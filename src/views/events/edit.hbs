@@ -1,0 +1,20 @@
+<h1 class="text-center text-gray-700 text-4xl my-8">Edit details</h1>
+<div class="flex justify-center">
+  <form action="/events/edit/{{event.ID}}" method="POST" class="bg-white shadow-md rounded-md px-8 pt-6 pb-8 w-9/12 max-w-md">
+    <div class="mb-4">
+      <input class="input" name="name" value="{{event.NAME}}" type="text" placeholder="Name's events" />
+    </div>
+    <div class="mb-4">
+      <input class="input" name="description" value="{{event.DESCRIPTION}}" type="text" placeholder="Description" />
+    </div>
+    <div class="mb-6">
+      <input class="input" name="dateStart" value="{{formatDate event.DATE_START}}" type="date" placeholder="Date"/>
+    </div>
+    <button
+      class="btn w-full outline-none bg-blue-500 hover:bg-blue-700 text-white"
+      type="submit"
+    >
+      Guardar
+    </button>
+  </form>
+</div>

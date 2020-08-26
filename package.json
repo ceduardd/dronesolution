@@ -1,0 +1,25 @@
+{
+  "name": "dronesolution-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/",
+    "build:css": "tailwindcss build src/main.css -o src/public/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "morgan": "^1.10.0",
+    "oracledb": "^5.0.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "tailwindcss": "^1.6.2"
+  }
+}
