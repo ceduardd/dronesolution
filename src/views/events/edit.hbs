@@ -1,20 +1,57 @@
-<h1 class="text-center text-gray-700 text-4xl my-8">Edit details</h1>
-<div class="flex justify-center">
-  <form action="/events/edit/{{event.ID}}" method="POST" class="bg-white shadow-md rounded-md px-8 pt-6 pb-8 w-9/12 max-w-md">
-    <div class="mb-4">
-      <input class="input" name="name" value="{{event.NAME}}" type="text" placeholder="Name's events" />
-    </div>
-    <div class="mb-4">
-      <input class="input" name="description" value="{{event.DESCRIPTION}}" type="text" placeholder="Description" />
-    </div>
-    <div class="mb-6">
-      <input class="input" name="dateStart" value="{{formatDate event.DATE_START}}" type="date" placeholder="Date"/>
-    </div>
-    <button
-      class="btn w-full outline-none bg-blue-500 hover:bg-blue-700 text-white"
-      type="submit"
-    >
-      Guardar
+<div class="mt-8">
+
+  <div class="mb-8">
+  <h1 class="text-center text-4xl mb-4">Editar Detalles de {{ event.NAME }}</h1>
+  <p class="text-center">Completa toda la información acerca del evento</p>
+  
+</div>
+
+<div class="w-4/5 max-w-lg m-auto mb-10">
+
+  <form action="/events/edit/{{ event.ID }}" method="POST" autocomplete="off">
+
+    <label>
+      Nombre del evento
+      <input class="input mt-2 mb-4" name="name" type="text" value="{{ event.NAME }}" />
+    </label>
+    <label>
+      Descripción
+      <input class="input mt-2 mb-4" name="description" type="text" value="{{ event.DESCRIPTION }}"/>
+    </label>
+    <label>
+      Fecha
+      <input class="input mt-2 mb-4" name="date" type="date" value="{{ formatDate event.DATE_START }}"/>
+    </label>
+    <label>
+      Hora
+      <input class="input mt-2 mb-4" name="hour" type="time" value="{{ formatHour event.DATE_START }}"/>
+    </label>
+    <label>
+      Duración estimada
+      <input class="input mt-2 mb-4" name="duration" type="time" value="{{ event.DURATION }}"/>
+    </label>
+    <label>
+      Cantidad de asistentes
+      <input class="input mt-2 mb-8" name="num_attendees" type="number" value="{{ event.NUM_ATTENDEES}}"/>
+    </label>
+    <label>
+      Capacidad de aforo permitida
+      <input class="input mt-2 mb-8" name="capacity_allowed" type="number" value="{{ formatPercent event.CAPACITY_ALLOWED }}"/>
+    </label>
+    {{!-- La categoría no se puede editar --}}
+    {{!-- <label>
+      Categoría del evento
+      <select class="input" name="type">
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option value="DEPORTIVO">DEPORTIVO</option>
+        <option value="SOCIAL">SOCIAL</option>
+        <option value="POLÍTICO">POLÍTICO</option>
+      </select>
+    </label> --}}
+
+    <button class="border rounded-full px-5 py-2 w-full mt-8 mb-8" type="submit">
+      Actualizar
     </button>
+
   </form>
 </div>

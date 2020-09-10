@@ -1,26 +1,37 @@
-<div class="flex justify-center">
-  <form
-    action="/signin"
-    method="POST"
-    class="bg-white shadow-md rounded-md mt-6 px-8 pt-6 pb-8 w-9/12 max-w-md"
-  >
-    <h1 class="text-center text-gray-700 text-4xl mb-2">Iniciar Sessión</h1>
-    <div class="mb-4">
-      <input class="input" name="email" type="email" placeholder="Email" />
-    </div>
-    <div class="mb-4">
-      <input
-        class="input"
-        name="password"
-        type="password"
-        placeholder="Contraseña"
-      />
-    </div>
-    <button
-      class="btn w-full outline-none bg-blue-500 hover:bg-blue-700 text-white"
-      type="submit"
-    >
-      Iniciar Sessión
+<div class="logo flex items-center justify-center py-2 mb-8 border-b">
+
+  <img src="assets/img/ds-logo.svg" width="60px" alt="logo-ds">
+  <a href="/" class="text-3xl font-bold">DroneSolution</a>
+  
+</div>
+
+<div class="mb-8">
+
+  <h1 class="text-center text-4xl mb-4">Iniciar Sesión</h1>
+  <p class="text-center">Bienvenido de vuelta!</p>
+
+</div>
+
+<div class="w-4/5 max-w-lg m-auto">
+
+  <form action="/signin" method="POST" autocomplete="off">
+
+    <label>
+      Correo electrónico
+      <input class="input mt-2 mb-4" name="email" type="email" />
+    </label>
+    <label>
+      Contraseña
+      <input class="input mt-2 mb-8" name="password" type="password" />
+    </label>
+    <button class="border rounded-full px-5 py-2 w-full mb-8" type="submit">
+      Iniciar Sesión
     </button>
+
+    <p class="mb-8 text-sm text-center">
+      ¿Aún no tienes una cuenta? <a class="text-gray-500" href="/signup">Regístrate</a>.
+    </p>
+
   </form>
+
 </div>

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/",
-    "build:css": "tailwindcss build src/main.css -o src/public/main.css"
+    "build:css": "tailwindcss build src/app/main.css -o src/public/main.css"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,8 @@
     "oracledb": "^5.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "tailwindcss": "^1.6.2"
+    "socket.io": "^2.3.0",
+    "tailwindcss": "^1.8.5",
+    "timeago.js": "^4.0.2"
   }
 }

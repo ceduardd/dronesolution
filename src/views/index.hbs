@@ -1,4 +1,66 @@
-<main class="px-8">
-  <h1 class="text-center text-2xl lg:text-4xl">Página del Home</h1>
-</main>
+{{> nav }}
+
+<div class="min-h-screen grid">
+
+  {{!-- Hero --}}
+  <div class="wrapper flex flex-col-reverse py-8 md:flex-row md:items-center">
+
+    {{!-- Hero's text --}}
+    <div class="text-center md:text-left md:flex-1">
+
+      <h1 class="text-4xl mb-4 font-bold">Lorem ipsum dolor sit amet consectetur.</h1>
+      <p class="mb-8 font-bold text-gray-700">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur voluptatem esse debitis. Necessitatibus, beatae omnis!</p>
+      <a class="border rounded-full px-5 py-2" href="/signup">Empieza ahora!</a>
+
+    </div>
+
+    {{!-- Hero's image --}}
+    <div class="mb-8 md:flex-1 md:mb-0">
+
+      <img class="w-4/5 m-auto sm:w-3/5 md:w-3/4" src="assets/img/hero-img.svg" alt="hero-img">
+
+    </div>
+
+  </div>
+
+  {{!-- Features --}}
+  <div class="bg-gray-100 md:py-8">
+
+    <div class="wrapper flex flex-col md:flex-row">
+
+      {{!-- Feature row --}}
+      <div class="p-8 text-center">
+
+        <h3 class="text-2xl font-bold mb-2">Lorem ipsum dolor sit.</h3>
+        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, porro.</p>
+        <img class="w-2/4 m-auto" src="/assets/img/camera-feature.svg" alt="camera">
+
+      </div>
+
+      {{!-- Feature row --}}
+      <div class="p-8 text-center">
+
+        <h3 class="text-2xl font-bold mb-2">Lorem ipsum dolor sit.</h3>
+        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, porro.</p>
+        <img class="w-2/4 m-auto" src="/assets/img/calendar-feature.svg" alt="camera">
+
+      </div>
+
+      {{!-- Feature row --}}
+      <div class="p-8 text-center">
+
+        <h3 class="text-2xl font-bold mb-2">Lorem ipsum dolor sit.</h3>
+        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, porro.</p>
+        <img class="w-2/4 m-auto" src="/assets/img/location-feature.svg" alt="camera">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  {{> footer }}
+
+</div>
+
 

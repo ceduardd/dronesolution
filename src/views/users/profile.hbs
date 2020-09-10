@@ -1,13 +1,126 @@
-<h1>Hola Bienvenido</h1>
+<div class="sticky bg-white top-0 py-2">
 
-<button>
-  <a class="btn bg-orange-500 text-white" href="/logout">Salir</a>
-</button>
+  <div class="wrapper flex justify-between items-center">
 
-<button class="mb-4">
-  <a class="btn bg-blue-500 text-white" href="events/add">Añadir</a>
-</button>
+    <div>
+      {{!-- Logo --}}
+      <div class="logo flex items-center">
 
-<button class="mb-4">
-  <a class="btn bg-blue-500 text-white" href="events">Eventos</a>
-</button>
+        <img src="/assets/img/ds-logo.svg" width="60px" alt="logo-ds">
+        <p class="text-xl md:text-2xl font-bold ml-2">Dashboard</p>
+    
+      </div>
+    </div>
+
+    <div class="flex items-center">
+
+      <button id="user" class="ml-3 focus:outline-none">
+        <p class="hidden md:inline-block">
+          {{user.FULLNAME}}
+        </p>
+        <svg class="w-8 h-8 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </button>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<ul id="settings-list" class="fixed left-0 right-0 bg-white transform translate-x-full transition-transform duration-100 ease-linear shadow-md">
+
+  <li><a class="block mx-8 border-b py-4 text-center" href="#">Editar</a></li>
+  <li><a class="block mx-8 border-b py-4 text-center" href="#">Historial de Contratos</a></li>
+  <li><a href="/logout" class="block mx-8 py-4 text-center" href="#">Cerrar Sessión</a></li>
+
+</ul>
+
+{{> message }}
+
+<div class="wrapper grid grid-cols-1 gap-x-8 md:grid-cols-2">
+
+  <div class="mt-4">
+
+    <h1 class="font-bold text-blue-700 text-2xl mb-4">Eventos Programados</h1>
+    <div class="flex mb-4">
+
+      <button class="focus:outline-none">
+        <a href="/events/add">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+      </button>
+      <button class="focus:outline-none">
+        <a href="/help">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+      </button>
+
+    </div>
+
+    <div class="">
+
+      {{#each events}}
+
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-4">
+        
+        <h2 class="text-blue-500 font-bold text-2xl uppercase">{{NAME}}</h2>
+        
+        <p>{{DESCRIPTION}}</p>
+        
+        <span class="block text-gray-700 mb-2">{{formatDate DATE_START}}</span>
+
+        <div class="buttons flex justify-between items-center">
+
+          <div>
+
+            <button class="focus:outline-none">
+              <a class="rounded px-5 py-1 bg-blue-500 text-white" href="/events/edit/{{ID}}">Edit</a>
+            </button>
+            
+            <button class="focus:outline-none">
+              <a class="rounded px-5 py-1 bg-red-500 text-white" href="/events/delete/{{ID}}">Delete</a>
+            </button>
+
+          </div>
+
+          <button class="focus:outline-none">
+            <a href="/events/select">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </a>
+          </button>
+
+        </div>
+        
+      </div>
+
+      {{else}}
+        <div class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2">
+          <p>No hay eventos programados! <a class="text-blue-700 underline" href="/events/add">Agrega Uno!</a></p>
+        </div>
+      {{/each}}
+    </div>
+
+    
+  </div>
+
+  <div class="mt-4">
+    <h1 class="font-bold text-blue-700 text-2xl mb-4">Alarmas</h1>
+
+    <div id="wrapperNtf">
+
+      {{> notification }}
+
+    </div>
+
+  </div>
+
+</div>
+
+{{!-- Drop-down lists --}}
+
+
+
+{{!-- SOCKET.IO --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.auth.js"></script>

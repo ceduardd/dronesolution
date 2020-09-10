@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const { encryptPassword, matchPassword } = require('../lib/helpers');
+const { encryptPassword, matchPassword } = require('../lib/bcrypt');
 const { executeQuery } = require('../database');
 
 passport.use(
@@ -13,22 +13,20 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      const sql = 'SELECT * FROM users WHERE email = :email';
+      const stmt = `SELECT * FROM users WHERE email = :email`;
       const binds = [email];
 
-      const resultQuery = await executeQuery(sql, binds);
+      const resultQuery = await executeQuery(stmt, binds);
       const rows = resultQuery.rows;
 
+      // Any row selected
       if (rows.length > 0) {
         const user = rows[0];
         const validPassword = await matchPassword(password, user.PASSWORD);
 
+        // Validate password
         if (validPassword) {
-          done(
-            null,
-            user,
-            req.flash('success', 'Bienvenido ' + user.FIRSTNAME)
-          );
+          done(null, user, req.flash('success', 'Bienvenido ' + user.FULLNAME));
         } else {
           done(null, false, req.flash('message', 'Contraseña incorrecta'));
         }
@@ -48,26 +46,30 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
-      const { firstname, DNI } = req.body;
+      const { DNI, fullname, phone, home_address } = req.body;
+
       const encryptPass = await encryptPassword(password);
 
-      const sql = 'SELECT * FROM users WHERE dni = :DNI';
-      const binds = [DNI];
+      const stmt = `SELECT * FROM users WHERE dni = :DNI OR email = :email OR phone = :phone`;
+      const binds = [DNI, email, phone];
 
-      const resultQuery = await executeQuery(sql, binds);
+      const resultQuery = await executeQuery(stmt, binds);
       const rows = resultQuery.rows;
 
+      // No row has been selected
       if (rows.length === 0) {
-        const sql =
-          'INSERT INTO users VALUES (:DNI, :firstname, :email, :encryptPass)';
-        const binds = [DNI, firstname, email, encryptPass];
-        await executeQuery(sql, binds);
+        const stmt = `INSERT INTO users VALUES (:DNI, :fullname, :email, :encryptPass, :phone, :home_address)`;
+        const binds = [DNI, fullname, email, encryptPass, phone, home_address];
+
+        await executeQuery(stmt, binds); // Guardando nuevo usuario
 
         const newUser = {
           DNI,
-          firstname,
+          fullname,
           email,
           encryptPass,
+          phone,
+          home_address,
         };
 
         done(null, newUser);
@@ -75,7 +77,10 @@ passport.use(
         return done(
           null,
           false,
-          req.flash('message', 'Esta cédula ya está registrada')
+          req.flash(
+            'message',
+            'Correo electrónico, email o teléfono ya ha sido registrado'
+          )
         );
       }
     }
@@ -87,9 +92,11 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (dni, done) => {
-  const sql = 'SELECT * FROM users WHERE dni = :dni';
+  const stmt = `SELECT * FROM users WHERE dni = :dni`;
   const binds = [dni];
-  const resultQuery = await executeQuery(sql, binds);
+
+  const resultQuery = await executeQuery(stmt, binds);
   const rows = resultQuery.rows;
+
   done(null, rows[0]);
 });

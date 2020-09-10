@@ -1,8 +1,43 @@
-<nav class="flex justify-between items-center px-8 py-4 bg-blue-500 text-white">
-  <a href="/" class="text-lg uppercase font-bold">DroneSolution</a>
+<div class="sticky top-0 bg-white py-2">
+  <nav class="wrapper flex justify-between items-center">
 
-  <div class="flex">
-    <a href="/signin" class="">Iniciar Sesión</a>
-    <a href="/signup" class="ml-4">Registrarse</a>
-  </div>
-</nav>
+    <div class="flex items-center">
+
+      {{!-- Logo --}}
+      <div class="logo flex items-center">
+
+        <img src="assets/img/ds-logo.svg" width="60px" alt="logo-ds">
+        <a href="/" class="text-2xl font-bold">DroneSolution</a>
+    
+      </div>
+
+      {{!-- Links on Desktop --}}
+      <a href="#" class="hidden text-gray-700 md:block ml-4">Precios</a>
+      <a href="#" class="hidden text-gray-700 md:block ml-4">Acerca de nosotros</a>
+
+    </div>
+
+    {{!-- Drop-down burger button --}}
+    <button class="text-2xl focus:outline-none md:hidden" id="burger">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    {{!-- Auth buttons --}}
+    <div class="hidden md:flex items-center">
+
+      <a href="/signin" class="text-gray-700">Iniciar Sesión</a>
+      <a href="/signup" class="ml-4 border rounded-full px-5 py-2">Registrarse</a>
+    
+    </div>
+
+  </nav>
+  
+  {{!-- Drop-down list --}}
+  <ul class="fixed left-0 right-0 bg-white transform translate-x-full transition-transform duration-100 ease-linear shadow-md" id="list">
+    <li><a class="block mx-8 border-b py-4 text-center" href="#">Precios</a></li>
+    <li><a class="block mx-8 border-b py-4 text-center" href="#">Acerca de nosotros</a></li>
+    <li><a class="block mx-8 border-b py-4 text-center" href="/signin">Iniciar Sesión</a></li>
+    <li><a class="block mx-8 py-4 text-center" href="/signup">Registrarse</a></li>
+  </ul>
+
+</div>

@@ -1,13 +1,25 @@
 const express = require('express');
 const morgan = require('morgan');
-const session = require('express-session');
-const flash = require('connect-flash');
-const path = require('path');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
+const SocketIO = require('socket.io');
+const http = require('http');
+const path = require('path');
 
 // initializations
 const app = express();
+const server = http.createServer(app);
+
+// Socket.io
+const io = SocketIO(server);
+module.exports = {
+  io,
+  app,
+}; // this is necessary
+
+require('./sockets/socket');
 require('./config');
 require('./database');
 require('./lib/local-auth');
@@ -56,6 +68,6 @@ app.use(require('./routes'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // starting server
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server on port ${process.env.PORT}`);
 });

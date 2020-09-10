@@ -1,18 +1,35 @@
+const { format } = require('timeago.js');
+
 const helpers = {};
 
 helpers.formatDate = (date) => {
-  const month = date.getMonth() + 1; // getMonth() returns arrys with numbers of the months 0-11
-  const day = date.getDate();
-  let monthFormated = month;
-  let dayFormated = day;
-  if (month < 10) {
-    monthFormated = `0${month}`; // format mont or day with number less than 10
-  }
-  if (day < 10) {
-    dayFormated = `0${day}`;
-  }
+  const day = addZero(date.getDate());
+  const month = addZero(date.getMonth() + 1);
+  const year = date.getFullYear();
 
-  return `${date.getFullYear()}-${monthFormated}-${dayFormated}`; //dd-MM-yyyy
+  return `${year}-${month}-${day}`;
 };
+
+helpers.formatHour = (date) => {
+  const hours = addZero(date.getHours());
+  const minutes = addZero(date.getMinutes());
+
+  return `${hours}:${minutes}`;
+};
+
+helpers.formatPercent = (decimalNumber) => {
+  return decimalNumber * 100;
+};
+
+helpers.formatAgo = (timestamp) => {
+  return format(timestamp);
+};
+
+function addZero(number) {
+  if (number < 10) {
+    number = '0' + number;
+  }
+  return number;
+}
 
 module.exports = helpers;

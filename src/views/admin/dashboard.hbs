@@ -1,0 +1,29 @@
+<h1 class="wrapper text-2xl text-blue-700 my-6 font-bold">Dashboard Administrador</h1>
+
+<div class="wrapper grid md:grid-cols-2">
+  <div>
+    <h1 class="font-bold mb-6">Usuarios Conectados</h1>
+
+    <div class="poolUsers">
+      {{!-- Alarms goes here --}}
+
+    </div>
+
+  </div>
+
+  <div class="wrapper">
+    <h1 class="font-bold mb-6">Emitir alarma</h1>
+    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="type" name="type" placeholder="Type">
+    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="description" name="description" placeholder="Description">
+    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="id" name="id" placeholder="ID Connection">
+    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="dni" name="dni" placeholder="DNI">
+    <button class="block border px-3 py-2 mb-2 rounded-full w-full" type="submit" id="btn">Send</button>
+  </div>
+
+</div>
+
+
+
+{{!-- SOCKET.IO --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.dashboard.js"></script>

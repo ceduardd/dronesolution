@@ -3,10 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        nav: '#028090',
         primary: '#3282b8',
       },
       fontFamily: {
-        body: ['Nunito'],
+        principal: ['Poppins'],
       },
     },
   },

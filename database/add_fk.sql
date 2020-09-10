@@ -1,0 +1,4 @@
+-- SET FOREIGN KEYS TO ALL TABLES
+
+ALTER TABLE alarms
+  ADD CONSTRAINT fk_alarms FOREIGN KEY(user_dni) REFERENCES users(dni);

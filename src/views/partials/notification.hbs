@@ -1,0 +1,20 @@
+{{#each alarms}}
+
+  <li class="mb-4 flex justify-between rounded shadow-lg p-6">
+
+    <div>
+
+      <p class="font-bold">{{ TYPE }}</h3>
+      <p class="italic">{{DESCRIPTION}}</p>
+
+    </div>
+
+    <div class="badge bg-green-200 rounded-full px-3 py-2 flex items-center">
+
+      <small class="block text-right p-0 m-auto">{{formatAgo ISSUED_AT}}</small>
+    
+    </div>
+
+  </li>
+
+{{/each}}
