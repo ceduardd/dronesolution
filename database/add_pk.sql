@@ -2,3 +2,7 @@
 
 ALTER TABLE users
   ADD CONSTRAINT pk_users PRIMARY KEY(dni);
+
+
+ALTER TABLE places
+  ADD CONSTRAINT pk_places PRIMARY KEY(id);

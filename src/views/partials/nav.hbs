@@ -1,4 +1,4 @@
-<div class="sticky top-0 bg-white py-2">
+<div class="sticky top-0 bg-bold text-white py-2 shadow-md">
   <nav class="wrapper flex justify-between items-center">
 
     <div class="flex items-center">
@@ -6,14 +6,14 @@
       {{!-- Logo --}}
       <div class="logo flex items-center">
 
-        <img src="assets/img/ds-logo.svg" width="60px" alt="logo-ds">
+        <img src="assets/img/ds-logo-white.svg" width="60px" alt="logo-ds">
         <a href="/" class="text-2xl font-bold">DroneSolution</a>
     
       </div>
 
       {{!-- Links on Desktop --}}
-      <a href="#" class="hidden text-gray-700 md:block ml-4">Precios</a>
-      <a href="#" class="hidden text-gray-700 md:block ml-4">Acerca de nosotros</a>
+      <a href="#" class="hidden md:block ml-4">Precios</a>
+      <a href="#" class="hidden md:block ml-4">Acerca de nosotros</a>
 
     </div>
 
@@ -25,18 +25,18 @@
     {{!-- Auth buttons --}}
     <div class="hidden md:flex items-center">
 
-      <a href="/signin" class="text-gray-700">Iniciar Sesión</a>
-      <a href="/signup" class="ml-4 border rounded-full px-5 py-2">Registrarse</a>
+      <a href="/signin" class="">Iniciar Sesión</a>
+      <a href="/signup" class="btn-round ml-4 bg-acent">Registrarse</a>
     
     </div>
 
   </nav>
   
   {{!-- Drop-down list --}}
-  <ul class="fixed left-0 right-0 bg-white transform translate-x-full transition-transform duration-100 ease-linear shadow-md" id="list">
-    <li><a class="block mx-8 border-b py-4 text-center" href="#">Precios</a></li>
-    <li><a class="block mx-8 border-b py-4 text-center" href="#">Acerca de nosotros</a></li>
-    <li><a class="block mx-8 border-b py-4 text-center" href="/signin">Iniciar Sesión</a></li>
+  <ul class="fixed left-0 right-0 bg-bold transform translate-x-full transition-transform duration-100 ease-linear shadow-md" id="list">
+    <li><a class="block mx-8 border-b border-primay py-4 text-center" href="#">Precios</a></li>
+    <li><a class="block mx-8 border-b border-primay py-4 text-center" href="#">Acerca de nosotros</a></li>
+    <li><a class="block mx-8 border-b border-primay py-4 text-center" href="/signin">Iniciar Sesión</a></li>
     <li><a class="block mx-8 py-4 text-center" href="/signup">Registrarse</a></li>
   </ul>
 

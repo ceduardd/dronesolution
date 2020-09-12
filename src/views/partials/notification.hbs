@@ -1,6 +1,6 @@
 {{#each alarms}}
 
-  <li class="mb-4 flex justify-between rounded shadow-lg p-6">
+  <li class="mb-4 flex justify-between rounded shadow-lg p-6 text-bold">
 
     <div>
 
@@ -16,5 +16,12 @@
     </div>
 
   </li>
+
+{{else}}
+
+  <div class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2">
+    <p class="text-bold">No hay mensajes!</p>
+  </div>
+
 
 {{/each}}

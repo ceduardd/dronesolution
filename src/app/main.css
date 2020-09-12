@@ -13,3 +13,7 @@
 .wrapper {
   @apply w-11/12 max-w-6xl ml-auto mr-auto;
 }
+
+.btn-round {
+  @apply rounded-full px-5 py-2;
+}

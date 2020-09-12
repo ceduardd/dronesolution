@@ -2,3 +2,6 @@
 
 ALTER TABLE alarms
   ADD CONSTRAINT fk_alarms FOREIGN KEY(user_dni) REFERENCES users(dni);
+
+ALTER TABLE places
+  ADD CONSTRAINT fk_places FOREIGN KEY(event_id) REFERENCES events(id) ON DELETE CASCADE;

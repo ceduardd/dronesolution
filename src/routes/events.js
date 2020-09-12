@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 
+const oracledb = require('oracledb');
 const { executeQuery } = require('../database');
+
 const { isLoggedIn } = require('../lib/auth');
 
 router.get('/add', isLoggedIn, (req, res) => {
@@ -9,6 +11,8 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res) => {
+  // console.log(req.body);
+
   const DNI = req.user.DNI;
 
   const {
@@ -43,9 +47,9 @@ router.post('/add', isLoggedIn, async (req, res) => {
                   :num_attendees,
                   :capacity_percent,
                   :type
-                )`;
+                ) RETURNING id INTO :id`;
 
-  const binds = [
+  const binds = {
     DNI,
     name,
     description,
@@ -54,9 +58,38 @@ router.post('/add', isLoggedIn, async (req, res) => {
     num_attendees,
     capacity_percent,
     type,
-  ];
+    id: {
+      type: oracledb.NUMBER,
+      dir: oracledb.BIND_OUT,
+    },
+  };
 
-  await executeQuery(stmt, binds); // Saving new event
+  const resultQuery = await executeQuery(stmt, binds); // Saving new event
+
+  const event_id = resultQuery.outBinds.id[0];
+
+  console.log(event_id);
+
+  const { name_place, address, type_place, capacity_max } = req.body;
+
+  const stmt2 = `INSERT INTO places (
+                  event_id,
+                  name,
+                  address,
+                  type,
+                  capacity_max
+                ) VALUES (
+                  :event_id,
+                  :name_place,
+                  :address,
+                  :type_place,
+                  :capacity_max
+                )`;
+
+  const binds2 = [event_id, name_place, address, type_place, capacity_max];
+  console.log(binds2);
+
+  await executeQuery(stmt2, binds2); // Saving new place
 
   req.flash('success', 'Evento creado satisfactoriamente');
 
@@ -67,13 +100,17 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
   const stmt = `SELECT * FROM events WHERE id = :id`;
+  const stmt2 = `SELECT * FROM places WHERE event_id = :id`;
 
   const binds = [id];
 
   const resultQuery = await executeQuery(stmt, binds);
   const event = resultQuery.rows[0]; // Rows selected
 
-  res.render('events/edit', { event });
+  const resultQuery2 = await executeQuery(stmt2, binds);
+  const place = resultQuery2.rows[0]; // Rows selected
+
+  res.render('events/edit', { event, place });
 });
 
 router.post('/edit/:id', isLoggedIn, async (req, res) => {
@@ -114,6 +151,19 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
   ];
 
   await executeQuery(stmt, binds); // Updating event
+
+  const { name_place, address, capacity_max } = req.body;
+
+  const stmt2 = `UPDATE places 
+                SET 
+                  name = :name_place,
+                  address = :address,
+                  capacity_max = :capacity_max
+                WHERE event_id = :id`;
+
+  const binds2 = [name_place, address, capacity_max, id];
+
+  await executeQuery(stmt2, binds2); // Updating place
 
   req.flash('success', 'Evento editado satisfactoriamente');
 

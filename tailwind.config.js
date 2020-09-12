@@ -3,8 +3,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        nav: '#028090',
-        primary: '#3282b8',
+        bg_color: '#f1f3f8',
+        primay: '#8d93ab',
+        secondary: '#d6e0f0',
+        bold: '#393b44',
+        acent: 'hsl(12, 88%, 59%)',
       },
       fontFamily: {
         principal: ['Poppins'],

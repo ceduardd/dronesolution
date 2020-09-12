@@ -57,3 +57,6 @@ SELECT table_name
   FROM user_tables
   ORDER BY table_name;
 
+-- Drop table
+DROP TABLE table_name CASCADE CONSTRAINTS;
+

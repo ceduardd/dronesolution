@@ -28,10 +28,10 @@ passport.use(
         if (validPassword) {
           done(null, user, req.flash('success', 'Bienvenido ' + user.FULLNAME));
         } else {
-          done(null, false, req.flash('message', 'Contraseña incorrecta'));
+          done(null, false, req.flash('success', 'Contraseña incorrecta'));
         }
       } else {
-        return done(null, false, req.flash('message', 'El usuario no existe'));
+        return done(null, false, req.flash('success', 'El usuario no existe'));
       }
     }
   )
@@ -78,7 +78,7 @@ passport.use(
           null,
           false,
           req.flash(
-            'message',
+            'success',
             'Correo electrónico, email o teléfono ya ha sido registrado'
           )
         );
