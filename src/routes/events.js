@@ -6,6 +6,8 @@ const { executeQuery } = require('../database');
 
 const { isLoggedIn } = require('../lib/auth');
 
+const { matchPassword } = require('../lib/bcrypt');
+
 router.get('/add', isLoggedIn, (req, res) => {
   res.render('events/add');
 });
@@ -170,18 +172,51 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
   res.redirect('/user/profile');
 });
 
-router.get('/delete/:id', isLoggedIn, async (req, res) => {
-  const { id } = req.params;
+router.post('/delete', isLoggedIn, async (req, res) => {
+  // console.log(req.body);
 
-  const stmt = `DELETE FROM events WHERE id = :id`;
+  const { id, user_dni, password, reason } = req.body;
 
-  const binds = [id];
+  if (user_dni === req.user.DNI) {
+    const stmt1 = `SELECT * FROM users WHERE dni = :user_dni`;
+    const binds1 = [user_dni];
 
-  await executeQuery(stmt, binds); // Deleting event
+    const resultQuery = await executeQuery(stmt1, binds1);
 
-  req.flash('success', 'Evento borrado de los registros');
+    if (resultQuery.rows.length > 0) {
+      // match password
+      const user = resultQuery.rows[0];
 
-  res.redirect('/user/profile');
+      const validPassword = await matchPassword(password, user.PASSWORD);
+
+      if (validPassword) {
+        // unsubscribed event
+        const stmt2 = `UPDATE events SET state = 'UNSUBSCRIBED' WHERE id = :id`;
+        const stmt3 = `INSERT INTO unsubscribed_events (event_id, reason) VALUES(:id, :reason)`;
+        const binds2 = [id];
+        const binds3 = [id, reason];
+
+        await executeQuery(stmt2, binds2); // Deleting event
+        await executeQuery(stmt3, binds3); // Register unsubscribed
+
+        req.flash('success', 'Evento dado de baja satisfactoriamente');
+        return res.redirect('/user/profile');
+      } else {
+        // console.log('La contraseña es incorrecta');
+        req.flash(
+          'success',
+          'La confirmación ha fallado, no se pudo dar de baja'
+        );
+        return res.redirect('/user/profile');
+      }
+    } else {
+      req.flash('success', 'Ha ocurrido un error, inténtelo más tarde');
+      return res.redirect('/user/profile');
+    }
+  } else {
+    req.flash('success', 'La confirmación ha fallado, no se pudo dar de baja');
+    return res.redirect('/user/profile');
+  }
 });
 
 module.exports = router;

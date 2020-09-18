@@ -1,134 +1,197 @@
 <div class="sticky bg-white top-0 py-2 text-bold shadow-sm">
-
   <div class="wrapper flex justify-between items-center">
-
     <div>
       {{!-- Logo --}}
       <div class="logo flex items-center">
-
-        <img src="/assets/img/ds-logo.svg" width="60px" alt="logo-ds">
+        <img src="/assets/img/ds-logo.svg" width="60px" alt="logo-ds" />
         <p class="text-xl md:text-2xl font-bold ml-2">Dashboard</p>
-    
       </div>
     </div>
 
+    {{!-- Avatar --}}
     <div class="flex items-center">
-
       <button id="user" class="ml-3 focus:outline-none">
-        <p class="hidden md:inline-block">
-          {{user.FULLNAME}}
-        </p>
-        <svg class="w-8 h-8 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <p class="hidden md:inline-block">{{user.FULLNAME}}</p>
+        <svg
+          class="w-8 h-8 inline-block ml-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
       </button>
-
     </div>
-
   </div>
-
 </div>
 
-<ul id="settings-list" class="fixed left-0 right-0 bg-white transform translate-x-full transition-transform duration-100 ease-linear shadow-md">
-
+<ul
+  id="settings-list"
+  class="fixed left-0 right-0 bg-white transform translate-x-full transition-transform duration-100 ease-linear shadow-md"
+>
   <li><a class="block mx-8 border-b py-4 text-center" href="#">Editar</a></li>
-  <li><a class="block mx-8 border-b py-4 text-center" href="#">Historial de Contratos</a></li>
-  <li><a href="/logout" class="block mx-8 py-4 text-center" href="#">Cerrar Sessión</a></li>
-
+  <li>
+    <a class="block mx-8 border-b py-4 text-center" href="#"
+      >Historial de Contratos</a
+    >
+  </li>
+  <li>
+    <a href="/logout" class="block mx-8 py-4 text-center" href="#"
+      >Cerrar Sessión</a
+    >
+  </li>
 </ul>
 
 {{> message }}
 
 <div class="wrapper grid grid-cols-1 gap-x-8 md:grid-cols-2">
-
+  {{!-- Event section --}}
   <div class="mt-4">
-
+    {{!-- Section title --}}
     <h1 class="font-bold text-2xl mb-4 text-bold">Eventos Programados</h1>
-    <div class="flex mb-4">
 
+    {{!-- Buttons of event section --}}
+    <div class="flex mb-4">
       <button class="focus:outline-none">
         <a href="/events/add">
-          <svg class="w-8 h-8 text-acent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg
+            class="w-8 h-8 text-acent"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
         </a>
       </button>
+
       <button class="focus:outline-none">
         <a href="/help">
-          <svg class="w-8 h-8 text-acent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <svg
+            class="w-8 h-8 text-acent"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
         </a>
       </button>
-
     </div>
 
-    <div class="">
+    {{!-- Event list --}}
+    <div>{{> events }}</div>
 
-      {{#each events}}
-
-      <div class="bg-white rounded-lg shadow-lg p-6 mb-4">
-        
-        <h2 class="font-bold text-2xl uppercase text-bold">{{NAME}}</h2>
-        
-        <p class="text-bold">{{DESCRIPTION}}</p>
-        
-        <span class="block text-primay mb-2">{{formatDate DATE_START}}</span>
-
-        <div class="buttons flex justify-between items-center">
-          
-          {{!-- Buttons --}}
-          <div>
-
-            <button class="focus:outline-none hover:text-blue-500">
-              <a class="" href="/events/edit/{{ID}}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-              </a>
+    {{!-- Confirm dialog --}}
+    <div
+      id="modal"
+      class="fixed left-0 top-0 right-0 bg-black bg-opacity-50 w-screen h-screen hidden"
+    >
+      <div class="flex justify-center items-center w-screen h-screen">
+        <div class="form-delte bg-white rounded-md p-6 w-11/12 max-w-md">
+          <div class="flex justify-end items-center">
+            <button id="hideModal">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
             </button>
-            
-            <button class="focus:outline-none ml-2 hover:text-acent">
-              <a class="" href="/events/delete/{{ID}}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-              </a>
-            </button>
-
           </div>
 
-          <button class="focus:outline-none hover:text-green-500">
-            <a href="/events/select">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </a>
-          </button>
+          <h1 class="text-2xl text-acent font-bold text-center uppercase">
+            Dar de baja evento
+          </h1>
+          <p class="text-bold text-center mb-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Necessitatibus, dolor!
+          </p>
 
+          <form action="/events/delete" method="POST" autocomplete="off">
+            {{!-- Get event ID --}}
+            <input id="idValue" class="hidden" type="text" name="id" />
+
+            <label>
+              Cédula
+              <input class="input mb-2 block" name="user_dni" type="text" />
+            </label>
+            <label>
+              Contraseña
+              <input class="input mb-2 block" name="password" type="password" />
+            </label>
+            <label>
+              Motivo
+              <textarea class="input block" name="reason" rows="2"></textarea>
+            </label>
+
+            <button
+              class="mt-4 btn-round w-full text-white font-bold bg-acent focus:outline-none"
+            >
+              Confirmar
+            </button>
+          </form>
         </div>
-        
       </div>
-
-      {{else}}
-        <div class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2">
-          <p class="text-bold">No hay eventos programados! <a class="text-acent underline" href="/events/add">Agrega Uno!</a></p>
-        </div>
-      {{/each}}
     </div>
-
-    
   </div>
 
+  {{!-- Messages section --}}
   <div class="mt-4">
+    {{!-- Section title --}}
     <h1 class="font-bold text-2xl mb-4 text-bold">Mensajes</h1>
 
+    {{!-- Buttons of messages section --}}
     <div class="flex mb-4">
-
       <button class="focus:outline-none">
         <a href="/reports">
-          <svg class="w-8 h-8 text-acent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <svg
+            class="w-8 h-8 text-acent"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            ></path>
+          </svg>
         </a>
       </button>
-
     </div>
 
-    <div id="wrapperNtf">
-
-      {{> notification }}
-
-    </div>
-
+    {{!-- Notification list --}}
+    <div id="wrapperNtf">{{> notification }}</div>
   </div>
-
 </div>
 
 {{!-- SOCKET.IO --}}

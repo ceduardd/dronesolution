@@ -1,10 +1,4 @@
-<div class="logo flex items-center justify-center py-2 mb-8 shadow-sm">
-
-  <a href="/">
-    <img src="assets/img/ds-logo.svg" width="60px" alt="logo-ds">
-  </a>
-  
-</div>
+{{> logo-home }} 
 
 {{> message }}
 
@@ -14,36 +8,66 @@
 </div>
 
 <div class="w-4/5 max-w-lg m-auto mb-10">
-
   <form action="/signup" method="POST" autocomplete="off">
-
     <label>
       Cédula de identidad
-      <input class="input mt-2 mb-4 text-primay" name="DNI" type="text" required />
+      <input
+        class="input mt-2 mb-4"
+        name="DNI"
+        type="text"
+        required
+      />
     </label>
     <label>
       Nombre completo
-      <input class="input mt-2 mb-4 text-primay" name="fullname" type="text" required />
+      <input
+        class="input mt-2 mb-4"
+        name="fullname"
+        type="text"
+        required
+      />
     </label>
     <label>
       Correo electrónico
-      <input class="input mt-2 mb-4 text-primay" name="email" type="email" required />
+      <input
+        class="input mt-2 mb-4"
+        name="email"
+        type="email"
+        required
+      />
     </label>
     <label>
       Contraseña
-      <input class="input mt-2 mb-4 text-primay" name="password" type="password" required />
+      <input
+        class="input mt-2 mb-4"
+        name="password"
+        type="password"
+        required
+      />
     </label>
     <label>
       Teléfono
-      <input class="input mt-2 mb-4 text-primay" name="phone" type="tel" required />
+      <input
+        class="input mt-2 mb-4"
+        name="phone"
+        type="tel"
+        required
+      />
     </label>
     <label>
       Dirección domiciliaria
-      <input class="input mt-2 mb-8 text-primay" name="home_address" type="text" required />
+      <input
+        class="input mt-2 mb-8"
+        name="home_address"
+        type="text"
+        required
+      />
     </label>
 
     <p class="mb-8 text-sm text-center">
-      Al hacer clic en Registrarte, aceptas los <a class="text-acent" href="#">Términos y Condiciones de Uso</a> de DroneSolution.
+      Al hacer clic en Registrarte, aceptas los
+      <a class="text-acent" href="#">Términos y Condiciones de Uso</a> de
+      DroneSolution.
     </p>
 
     <button class="btn-round bg-acent w-full mb-8 text-white" type="submit">
@@ -51,9 +75,8 @@
     </button>
 
     <p class="mb-8 text-sm text-center">
-      ¿Ya tienes una cuenta? <a class="text-acent" href="/signin">Inicia sesión</a>.
+      ¿Ya tienes una cuenta?
+      <a class="text-acent" href="/signin">Inicia sesión</a>.
     </p>
-    
   </form>
-
 </div>

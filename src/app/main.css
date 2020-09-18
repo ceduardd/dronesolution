@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 .input {
-  @apply appearance-none outline-none border rounded py-2 shadow px-3  w-full;
+  @apply appearance-none outline-none border rounded py-2 shadow px-3  w-full text-primary;
 }
 
 .wrapper {
@@ -15,5 +15,5 @@
 }
 
 .btn-round {
-  @apply rounded-full px-5 py-2;
+  @apply rounded-full px-5 py-2 outline-none;
 }

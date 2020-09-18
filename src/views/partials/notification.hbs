@@ -1,27 +1,22 @@
 {{#each alarms}}
 
-  <li class="mb-4 flex justify-between rounded shadow-lg p-6 text-bold">
+<li class="mb-4 flex justify-between rounded shadow-lg p-6 text-bold">
+  <div>
+    <p class="font-bold">{{ TYPE }}</p>
+    <p class="italic text-sm">{{DESCRIPTION}}</p>
+  </div>
 
-    <div>
-
-      <p class="font-bold">{{ TYPE }}</h3>
-      <p class="italic">{{DESCRIPTION}}</p>
-
-    </div>
-
-    <div class="badge bg-green-200 rounded-full px-3 py-2 flex items-center">
-
-      <small class="block text-right p-0 m-auto">{{formatAgo ISSUED_AT}}</small>
-    
-    </div>
-
-  </li>
+  <div class="badge bg-green-200 rounded-full px-3 py-2 flex items-center">
+    <small class="block text-center">{{formatAgo ISSUED_AT}}</small>
+  </div>
+</li>
 
 {{else}}
 
-  <div class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2">
-    <p class="text-bold">No hay mensajes!</p>
-  </div>
-
+<div
+  class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2"
+>
+  <p class="text-bold">No hay mensajes!</p>
+</div>
 
 {{/each}}

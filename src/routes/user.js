@@ -8,7 +8,7 @@ const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 router.get('/profile', isLoggedIn, async (req, res) => {
   const DNI = req.user.DNI;
 
-  const stmt = `SELECT * FROM events WHERE user_dni = :DNI ORDER BY date_start`;
+  const stmt = `SELECT * FROM events WHERE user_dni = :DNI AND state = 'ACTIVE' ORDER BY date_start`;
   const stmt2 = `SELECT * FROM alarms WHERE user_dni = :DNI ORDER BY issued_at DESC`;
   const binds = [DNI];
 

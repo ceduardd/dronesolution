@@ -41,11 +41,14 @@ CREATE TABLE places(
   capacity_max NUMBER(7) NOT NULL
 ) TABLESPACE ts_dronesolution;
 
-
-
 CREATE TABLE alarms(
   user_dni VARCHAR2(10) NOT NULL,
   type VARCHAR2(20) NOT NULL,
   description VARCHAR2(50) NOT NULL,
   issued_at TIMESTAMP(2) NOT NULL
+) TABLESPACE ts_dronesolution;
+
+CREATE TABLE unsubscribed_events(
+	event_id NUMBER(4,0),
+	reason VARCHAR2(100)
 ) TABLESPACE ts_dronesolution;

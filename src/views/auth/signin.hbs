@@ -1,40 +1,32 @@
-<div class="logo flex items-center justify-center py-2 mb-8 shadow-sm">
-
-  <a href="/">
-    <img src="assets/img/ds-logo.svg" width="60px" alt="logo-ds">
-  </a>
-  
-</div>
+{{> logo-home }} 
 
 {{> message }}
 
-<div class="mb-8">
-
-  <h1 class="text-center text-4xl mb-4 text-bold font-bold">Iniciar Sesión</h1>
+<div class="mb-8 text-bold">
+  <h1 class="text-center text-4xl mb-4 font-bold">Iniciar Sesión</h1>
   <p class="text-center">Bienvenido de vuelta!</p>
-
 </div>
 
 <div class="w-4/5 max-w-lg m-auto">
-
   <form action="/signin" method="POST" autocomplete="off">
-
     <label>
       Correo electrónico
-      <input class="input mt-2 mb-4 text-primay" name="email" type="email" required />
+      <input class="input mt-2 mb-4" name="email" type="email" required />
     </label>
     <label>
       Contraseña
-      <input class="input mt-2 mb-8 text-primay" name="password" type="password" required />
+      <input class="input mt-2 mb-8" name="password" type="password" required />
     </label>
-    <button class="btn-round bg-acent w-full mb-8 font-bold text-white" type="submit">
+    <button
+      class="btn-round bg-acent w-full mb-8 font-bold text-white"
+      type="submit"
+    >
       Iniciar Sesión
     </button>
 
     <p class="mb-8 text-sm text-center">
-      ¿Aún no tienes una cuenta? <a class="text-acent" href="/signup">Regístrate</a>.
+      ¿Aún no tienes una cuenta?
+      <a class="text-acent" href="/signup">Regístrate</a>.
     </p>
-
   </form>
-
 </div>
