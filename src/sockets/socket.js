@@ -10,7 +10,7 @@ let idAdmin;
 
 io.on('connection', (socket) => {
   console.log('New user has been connected');
-  socket.emit('received', 'Hola que tal, ya te vi');
+  socket.emit('received', 'Connected to server');
 
   socket.on('sendNotification', async (notification) => {
     notification.issued_at = formatAgo(notification.issued_at);

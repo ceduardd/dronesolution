@@ -1,0 +1,17 @@
+#settings-list::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* right: auto; */
+  border: 10px solid;
+  border-color: transparent transparent #393b44 transparent;
+}
+
+@media (min-width: 768px) {
+  #settings-list::before {
+    left: 80%;
+    transform: translateX(-20%);
+  }
+}

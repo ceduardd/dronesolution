@@ -3,9 +3,9 @@
 <div class="bg-white rounded-lg shadow-lg p-6 mb-4">
   <h2 class="font-bold text-2xl uppercase text-bold">{{NAME}}</h2>
 
-  <p class="text-bold">{{DESCRIPTION}}</p>
+  <p class="text-bold font-secondary">{{DESCRIPTION}}</p>
 
-  <span class="block text-primary mb-2">{{formatDate DATE_START}}</span>
+  <span class="block text-primary mb-2 font-secondary">{{formatDate DATE_START}}</span>
 
   <div class="buttons flex justify-between items-center">
     {{!-- Buttons --}}
@@ -54,7 +54,7 @@
     </div>
 
     <button class="focus:outline-none hover:text-green-500">
-      <a href="/events/select">
+      <a href="/pricing/{{ID}}">
         <svg
           class="w-6 h-6"
           fill="none"

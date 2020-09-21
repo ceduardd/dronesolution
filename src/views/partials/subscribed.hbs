@@ -1,0 +1,25 @@
+{{#each subscribed}}
+
+<div class="bg-white rounded-lg shadow-lg p-6 mb-4">
+  <h2 class="font-bold text-2xl uppercase text-bold">{{NAME}}</h2>
+
+  <p class="text-bold font-secondary">{{DESCRIPTION}}</p>
+
+  <span class="block text-primary mb-2 font-secondary">{{formatDate DATE_START}}</span>
+
+  <div class="buttons flex justify-end items-center font-secondary">
+    Contratado <i class="fas fa-check ml-2 text-green-300"></i>
+  </div>
+</div>
+
+{{else}}
+
+<div
+  class="w-full px3 py-2 bg-gray-200 md:bg-transparent mb-4 m-auto rounded text-center md:col-span-2"
+>
+  <p class="text-bold">
+    No hay eventos contratados!
+  </p>
+</div>
+
+{{/each}}

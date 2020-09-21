@@ -1,6 +1,13 @@
 module.exports = {
   purge: [],
   theme: {
+    inset: {
+      full: '100%',
+      half: '50%',
+      xfull: '150%',
+      auto: 'auto',
+      0: 0,
+    },
     extend: {
       colors: {
         bg_color: '#f1f3f8',
@@ -11,6 +18,7 @@ module.exports = {
       },
       fontFamily: {
         principal: ['Poppins'],
+        secondary: ['Roboto'],
       },
     },
   },

@@ -23,14 +23,14 @@ socket.on('renderMessage', (newNotification) => {
   p1.className = 'font-bold';
   p1.textContent = newNotification.type;
   let p2 = document.createElement('p');
-  p2.className = 'italic';
+  p2.className = 'italic text-sm font-secondary';
   p2.textContent = newNotification.description;
 
   div1.appendChild(p1);
   div1.appendChild(p2);
 
   let small = document.createElement('small');
-  small.className = 'block text-right p-0 m-auto';
+  small.className = 'block text-center font-secondary';
   small.textContent = newNotification.issued_at;
 
   div2.appendChild(small);
@@ -47,6 +47,6 @@ socket.on('received', (message) => {
 
 if (btnUser) {
   btnUser.addEventListener('click', () => {
-    settings.classList.toggle('translate-x-full');
+    settings.classList.toggle('hidden');
   });
 }

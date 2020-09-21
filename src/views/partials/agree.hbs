@@ -1,0 +1,37 @@
+{{#each agrees}}
+
+<div class="wrapper p-8 border rounded mt-8">
+  <div class="flex justify-end items-center">
+    <img src="/assets/img/ds-logo.svg" alt="logo" width="50" />
+    <p class="font-bold text-lg">DroneSolution</p>
+  </div>
+  <h1
+    class="text-center text-3xl mb-8 font-bold text-bold font-secondary uppercase"
+  >
+    Contrato <i class="fas fa-file-signature"></i>
+  </h1>
+  <p class="font-secondary mb-4">Fecha: {{ formatDate DATE_ISSUE }}</p>
+  <p class="font-secondary mb-4">
+    Yo {{ FULLNAME }} con cédula de identidad
+    <span class="font-bold">{{ DNI }}</span> contrato los servicios de
+    DroneSolution para el control de mi evento
+    <span class="font-bold">{{ NAME }}</span> con fecha prevista para el
+    <span class="font-bold">{{ formatDate DATE_START }}</span> a las
+    <span class="font-bold">{{ formatHour DATE_START }}</span> horas.
+  </p>
+  <h2 class="font-secondary mb-2">Detalles del servicio contratado:</h2>
+  <ul>
+    <li>Tipo plan: {{ NAME_PLAN }}</li>
+    <li>Valor: $ {{ PRICE }}</li>
+  </ul>
+</div>
+
+{{else}}
+
+<div
+  class="wrapper w-full px3 py-2 bg-gray-200 m-auto rounded text-center mt-8"
+>
+  <p class="text-bold">No hay contratos registrados!</p>
+</div>
+
+{{/each}}

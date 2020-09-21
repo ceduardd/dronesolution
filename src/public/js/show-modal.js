@@ -15,8 +15,6 @@ function hideModal() {
   modal.classList.add('hidden');
 }
 
-console.log(btnsDelete);
-
 if (btnsDelete) {
   btnsDelete.forEach((btn) => {
     btn.addEventListener('click', showModal);
