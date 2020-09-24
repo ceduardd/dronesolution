@@ -2,10 +2,9 @@ const { Router } = require('express');
 const router = Router();
 
 const oracledb = require('oracledb');
+
 const { executeQuery } = require('../database');
-
 const { isLoggedIn } = require('../lib/auth');
-
 const { matchPassword } = require('../lib/bcrypt');
 
 router.get('/add', isLoggedIn, (req, res) => {
@@ -13,8 +12,6 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res) => {
-  // console.log(req.body);
-
   const DNI = req.user.DNI;
 
   const {
@@ -70,8 +67,6 @@ router.post('/add', isLoggedIn, async (req, res) => {
 
   const event_id = resultQuery.outBinds.id[0];
 
-  console.log(event_id);
-
   const { name_place, address, type_place, capacity_max } = req.body;
 
   const stmt2 = `INSERT INTO places (
@@ -89,7 +84,6 @@ router.post('/add', isLoggedIn, async (req, res) => {
                 )`;
 
   const binds2 = [event_id, name_place, address, type_place, capacity_max];
-  console.log(binds2);
 
   await executeQuery(stmt2, binds2); // Saving new place
 
@@ -173,15 +167,12 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
 });
 
 router.post('/delete', isLoggedIn, async (req, res) => {
-  // console.log(req.body);
-
   const { id, user_dni, password, reason } = req.body;
 
   if (user_dni === req.user.DNI) {
-    const stmt1 = `SELECT * FROM users WHERE dni = :user_dni`;
-    const binds1 = [user_dni];
+    const stmt = `SELECT * FROM users WHERE dni = :user_dni`;
 
-    const resultQuery = await executeQuery(stmt1, binds1);
+    const resultQuery = await executeQuery(stmt, [user_dni]);
 
     if (resultQuery.rows.length > 0) {
       // match password
@@ -192,17 +183,14 @@ router.post('/delete', isLoggedIn, async (req, res) => {
       if (validPassword) {
         // unsubscribed event
         const stmt2 = `UPDATE events SET state = 'UNSUBSCRIBED' WHERE id = :id`;
-        const stmt3 = `INSERT INTO unsubscribed_events (event_id, reason) VALUES(:id, :reason)`;
-        const binds2 = [id];
-        const binds3 = [id, reason];
+        const stmt3 = `INSERT INTO unsubscribed_events (event_id, reason) VALUES (:id, :reason)`;
 
-        await executeQuery(stmt2, binds2); // Deleting event
-        await executeQuery(stmt3, binds3); // Register unsubscribed
+        await executeQuery(stmt2, [id]); // Deleting event
+        await executeQuery(stmt3, [id, reason]); // Register unsubscribed
 
         req.flash('success', 'Evento dado de baja satisfactoriamente');
         return res.redirect('/user/profile');
       } else {
-        // console.log('La contraseña es incorrecta');
         req.flash(
           'success',
           'La confirmación ha fallado, no se pudo dar de baja'

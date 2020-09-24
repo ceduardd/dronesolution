@@ -45,42 +45,37 @@ router.get('/agreement/:id/:plan', async (req, res) => {
 router.get('/details/:id', async (req, res) => {
   const { id } = req.params;
 
-  const stmt = `SELECT * FROM agreements WHERE id = :id`;
+  const stmt = `SELECT DATE_ISSUE, USERS.FULLNAME, USERS.DNI, EVENTS.NAME, DATE_START, PLANS.NAME_PLAN, PLANS.PRICE
+                FROM agreements
+                  INNER JOIN USERS ON USERS.DNI = AGREEMENTS.USER_DNI 
+                  INNER JOIN EVENTS ON EVENTS.ID = AGREEMENTS.EVENT_ID
+                  INNER JOIN PLANS ON PLANS.ID = AGREEMENTS.PLAN_ID   
+                WHERE agreements.id = :id`;
+
   const binds = [id];
 
   const resultQuery = await executeQuery(stmt, binds);
 
   const details = resultQuery.rows[0];
 
-  // console.log(details);
+  console.log(details);
 
-  const { DATE_ISSUE, USER_DNI, PLAN_ID, EVENT_ID } = details;
+  // const agreement = {
+  //   date: DATE_ISSUE,
+  //   name: FULLNAME,
+  //   dni: USER_DNI,
+  //   plan_name,
+  //   price,
+  //   name_event,
+  //   date_event,
+  // };
 
-  const stmt2 = `SELECT fullname FROM users WHERE dni = :USER_DNI`;
-  const resultQuery2 = await executeQuery(stmt2, [USER_DNI]);
-  const { FULLNAME } = resultQuery2.rows[0];
-
-  const stmt3 = `SELECT name_plan, price FROM plans WHERE id = :PLAN_ID`;
-  const resultQuery3 = await executeQuery(stmt3, [PLAN_ID]);
-  const { NAME: plan_name, PRICE: price } = resultQuery3.rows[0];
-
-  const stmt4 = `SELECT name, date_start FROM events WHERE id = :EVENT_ID`;
-  const resultQuery4 = await executeQuery(stmt4, [EVENT_ID]);
-  const { NAME: name_event, DATE_START: date_event } = resultQuery4.rows[0];
-
-  const agreement = {
-    date: DATE_ISSUE,
-    name: FULLNAME,
-    dni: USER_DNI,
-    plan_name,
-    price,
-    name_event,
-    date_event,
+  const payload = {
+    details,
+    head: 'Detalles',
   };
 
-  console.log(agreement);
-
-  res.render('users/agreement', agreement);
+  res.render('users/agreement', payload);
 });
 
 module.exports = router;

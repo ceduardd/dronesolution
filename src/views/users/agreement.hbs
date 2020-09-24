@@ -1,116 +1,4 @@
-<div class="sticky bg-bold top-0 py-2 text-white shadow-sm">
-  <div class="wrapper flex justify-between items-center relative">
-    <div>
-      {{!-- Logo --}}
-      <div class="logo flex items-center">
-        <a href="/user/profile">
-          <img src="/assets/img/ds-logo-white.svg" width="60px" alt="logo-ds" />
-        </a>
-        <p class="text-xl md:text-2xl font-bold ml-2">Contrato</p>
-      </div>
-    </div>
-
-    {{!-- Avatar --}}
-    <div class="flex items-center">
-      <button id="user" class="ml-3 focus:outline-none">
-        <p class="hidden md:inline-block">{{user.FULLNAME}}</p>
-        <svg
-          class="w-8 h-8 inline-block ml-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          ></path>
-        </svg>
-        {{!--
-        <svg
-          class="w-4 h-4 inline-block"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          ></path>
-        </svg>
-        --}}
-      </button>
-    </div>
-    {{!-- Dropdown profile --}}
-    <ul
-      id="settings-list"
-      class="hidden absolute top-xfull left-0 right-0 md:left-auto bg-bold rounded-lg text-white shadow-xl"
-    >
-      <li class="flex justify-center items-center mx-16 pt-4">
-        <a class="block text-center" href="#">
-          <svg
-            class="w-6 h-6 mr-2 inline-block"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-            ></path>
-          </svg>
-          Editar
-        </a>
-      </li>
-      <li class="flex justify-center items-center mx-16 py-4">
-        <a class="block ml-2 text-center" href="#">
-          <svg
-            class="w-6 h-6 mr-2 inline-block"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-          Contratos
-        </a>
-      </li>
-      <li class="flex justify-center items-center mx-16 pb-4">
-        <a href="/logout" class="block ml-2 text-center" href="#">
-          <svg
-            class="w-6 h-6 mr-2 inline-block"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-            ></path>
-          </svg>
-          Salir
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+{{> head }}
 
 <div class="wrapper p-8 border rounded mt-8">
   <div class="flex justify-end items-center">
@@ -122,20 +10,20 @@
   >
     Contrato <i class="fas fa-file-signature"></i>
   </h1>
-  <p class="font-secondary mb-4">Fecha: {{ formatDate date }}</p>
+  <p class="font-secondary mb-4">Fecha: {{ formatDate details.DATE_ISSUE }}</p>
   <p></p>
   <p class="font-secondary mb-4">
-    Yo {{ name }} con cédula de identidad
-    <span class="font-bold">{{ dni }}</span> contrato los servicios de
+    Yo {{ details.FULLNAME }} con cédula de identidad
+    <span class="font-bold">{{ details.DNI }}</span> contrato los servicios de
     DroneSolution para el control de mi evento
-    <span class="font-bold">{{ name_event }}</span> con fecha prevista para el
-    <span class="font-bold">{{ formatDate date_event }}</span> a las
-    <span class="font-bold">{{ formatHour date_event }}</span> horas.
+    <span class="font-bold">{{ details.NAME }}</span> con fecha prevista para el
+    <span class="font-bold">{{ formatDate details.DATE_START }}</span> a las
+    <span class="font-bold">{{ formatHour details.DATE_START }}</span> horas.
   </p>
   <h2 class="font-secondary mb-2">Detalles del servicio contratado:</h2>
   <ul>
-    <li>Tipo plan: {{ plan_name }}</li>
-    <li>Valor: $ {{ price }}</li>
+    <li>Tipo plan: {{ agreement.NAME_PLAN }}</li>
+    <li>Valor: $ {{ agreement.PRICE }}</li>
   </ul>
 </div>
 

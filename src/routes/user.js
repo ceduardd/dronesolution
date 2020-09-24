@@ -19,6 +19,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 
   const payload = {
     user: req.user,
+    head: 'Dashboard',
     events: resultQuery1.rows, // Rows selected
     subscribed: resultQuery2.rows,
     alarms: resultQuery3.rows, // Rows selected
@@ -30,15 +31,18 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 router.get('/history', isLoggedIn, async (req, res) => {
   const dni = req.user.DNI;
 
-  const stmt = `SELECT DATE_ISSUE, USERS.FULLNAME, USERS.DNI, EVENTS.NAME, DATE_START, PLANS.NAME_PLAN, PLANS.PRICE FROM AGREEMENTS
+  const stmt = `SELECT DATE_ISSUE, USERS.FULLNAME, USERS.DNI, EVENTS.NAME, DATE_START, PLANS.NAME_PLAN, PLANS.PRICE 
+                FROM AGREEMENTS
                   INNER JOIN USERS ON USERS.DNI = AGREEMENTS.USER_DNI 
                   INNER JOIN EVENTS ON EVENTS.ID = AGREEMENTS.EVENT_ID
-                  INNER JOIN PLANS ON PLANS.ID = AGREEMENTS.PLAN_ID WHERE USERS.DNI = :dni`;
+                  INNER JOIN PLANS ON PLANS.ID = AGREEMENTS.PLAN_ID 
+                WHERE USERS.DNI = :dni`;
 
   const resultQuery = await executeQuery(stmt, [dni]);
 
   const agrees = resultQuery.rows;
   const payload = {
+    head: 'Contratos',
     agrees,
   };
   res.render('users/history', payload);

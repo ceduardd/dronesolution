@@ -5,7 +5,11 @@ const { isLoggedIn } = require('../lib/auth');
 
 router.get('/pricing/:id', isLoggedIn, (req, res) => {
   const { id } = req.params;
-  res.render('users/pricing', { id });
+  const payload = {
+    id,
+    head: 'Planes',
+  };
+  res.render('users/pricing', payload);
 });
 
 module.exports = router;

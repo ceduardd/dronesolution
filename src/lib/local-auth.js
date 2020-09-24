@@ -61,7 +61,7 @@ passport.use(
         const stmt = `INSERT INTO users VALUES (:DNI, :fullname, :email, :encryptPass, :phone, :home_address)`;
         const binds = [DNI, fullname, email, encryptPass, phone, home_address];
 
-        await executeQuery(stmt, binds); // Guardando nuevo usuario
+        await executeQuery(stmt, binds); // New user saved
 
         const newUser = {
           DNI,
@@ -72,7 +72,11 @@ passport.use(
           home_address,
         };
 
-        done(null, newUser);
+        done(
+          null,
+          newUser,
+          req.flash('success', 'Bienvenido ' + newUser.fullname)
+        );
       } else {
         return done(
           null,
