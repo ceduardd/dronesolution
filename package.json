@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/",
-    "build:css": "tailwindcss build src/app/main.css -o src/public/main.css"
+    "build:css": "tailwindcss build src/app/main.css -o src/public/css/bundle.css"
   },
   "keywords": [],
   "author": "",
