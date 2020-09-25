@@ -6,7 +6,7 @@ const { formatAgo } = require('../lib/handlebars');
 
 const dashboard = new Dashboard();
 
-let idAdmin;
+let idAdmin; // Save ID Admin
 
 io.on('connection', (socket) => {
   console.log('New user has been connected');
@@ -14,8 +14,6 @@ io.on('connection', (socket) => {
 
   socket.on('sendNotification', async (notification) => {
     notification.issued_at = formatAgo(notification.issued_at);
-
-    console.log(notification);
 
     const { dni, type, description } = notification;
 
@@ -52,8 +50,6 @@ io.on('connection', (socket) => {
     if (user) {
       dashboard.addUser(id, user.DNI, user.FULLNAME, user.EMAIL);
 
-      console.log(idAdmin);
-
       if (idAdmin) {
         socket.broadcast.to(idAdmin).emit('addUsers', dashboard.getUsers());
       }
@@ -61,7 +57,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    let userDisconnected = dashboard.removeUser(socket.id);
+    dashboard.removeUser(socket.id);
     socket.broadcast.to(idAdmin).emit('addUsers', dashboard.getUsers());
   });
 });

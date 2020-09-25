@@ -33,7 +33,6 @@ router.post(
 );
 
 router.get('/logout', isLoggedIn, (req, res) => {
-  console.log(req.user.FIRSTNAME, req.isAuthenticated());
   req.logOut();
   res.redirect('/signin');
 });

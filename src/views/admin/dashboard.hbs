@@ -1,29 +1,83 @@
-<h1 class="wrapper text-2xl text-blue-700 my-6 font-bold">Dashboard Administrador</h1>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+  crossorigin="anonymous"
+/>
 
-<div class="wrapper grid md:grid-cols-2">
+<nav class="navbar navbar-light bg-dark sticky-top">
+  <span class="navbar-brand mb-0 h1 text-white"
+    ><i class="fas fa-user-cog mr-2"></i>Dashboard Administrator</span
+  >
+</nav>
+
+<div class="wrapper grid gap-6 mb-4 md:grid-cols-2 mt-6">
   <div>
-    <h1 class="font-bold mb-6">Usuarios Conectados</h1>
+    <h2 class="mb-4"><i class="fas fa-users mr-2"></i>Pool Users</h2>
 
     <div class="poolUsers">
       {{!-- Alarms goes here --}}
-
     </div>
-
   </div>
 
-  <div class="wrapper">
-    <h1 class="font-bold mb-6">Emitir alarma</h1>
-    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="type" name="type" placeholder="Type">
-    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="description" name="description" placeholder="Description">
-    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="id" name="id" placeholder="ID Connection">
-    <input class="block border px-3 py-2 mb-2 rounded-full w-full" type="text" id="dni" name="dni" placeholder="DNI">
-    <button class="block border px-3 py-2 mb-2 rounded-full w-full" type="submit" id="btn">Send</button>
-  </div>
-
+  <form id="form-message" class="form" autocomplete="off">
+    <h2 class="mb-4"><i class="fas fa-paper-plane mr-2"></i>Send Message</h2>
+    <input
+      class="form-control"
+      type="text"
+      id="type"
+      name="type"
+      placeholder="Head"
+      required
+    />
+    <textarea
+      class="form-control mt-2"
+      type="text"
+      id="description"
+      name="description"
+      placeholder="Description"
+      required
+    ></textarea>
+    <input
+      class="form-control mt-2"
+      type="text"
+      id="id"
+      name="id"
+      placeholder="ID Connection"
+      disabled
+      required
+    />
+    <input
+      class="form-control mt-2"
+      type="text"
+      id="dni"
+      name="dni"
+      placeholder="DNI"
+      disabled
+      required
+    />
+    <button class="btn btn-success btn-block mt-2" type="submit" id="btnSubmit">
+      Send
+    </button>
+  </form>
 </div>
 
-
-
+{{!-- BOOTSTRAP 4 --}}
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+  crossorigin="anonymous"
+></script>
 {{!-- SOCKET.IO --}}
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/socket.dashboard.js"></script>

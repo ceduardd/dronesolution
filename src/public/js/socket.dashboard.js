@@ -2,6 +2,8 @@ var socket = io();
 
 const poolUsers = document.querySelector('.poolUsers');
 
+const form = document.getElementById('form-message');
+
 const title = document.getElementById('title');
 const dni = document.getElementById('dni');
 const id = document.getElementById('id');
@@ -18,11 +20,11 @@ socket.on('received', (message) => {
 });
 
 socket.on('addUsers', (users) => {
-  console.log(users);
+  // console.log(users);
   renderUsers(users);
 });
 
-btn.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const notification = {
@@ -35,35 +37,40 @@ btn.addEventListener('click', (e) => {
 
   socket.emit('sendNotification', notification);
 
-  console.log(notification);
+  $('#form-message')[0].reset();
 });
+
+function copyData(e) {
+  const data = e.target.getAttribute('id');
+
+  console.log(data);
+  const [userID, userDNI] = data.split(' ');
+
+  dni.value = userDNI;
+  id.value = userID;
+}
 
 function renderUsers(users) {
   let html = '';
 
   for (let i = 0; i < users.length; i++) {
-    html += `<div class="connections rounded p-4 bg-blue-300">
-              <div>
-                <p class="inline-block font-bold">Nombre:</p>
-                ${users[i].name}
+    html += `<div class="card text-white bg-dark mb-3">
+              <div class="card-header flex justify-between items-center">
+                <p class="m-0"><i class="far fa-user mr-2"></i>${users[i].name}</p>
+                <button id="${users[i].id} ${users[i].dni}" class="copy btn btn-success ml-auto">
+                  Select
+                </button>
               </div>
-              <div>
-                <p class="inline-block font-bold">Conexión ID:</p>
-                ${users[i].id}
+              <div class="card-body">
+                <p class="card-text">${users[i].email}</p>
+                <p class="card-text">${users[i].dni}</p>
               </div>
-              <div>
-                <p class="inline-block font-bold">Email:</p>
-                ${users[i].email}
-              </div>
-              <div>
-                <p class="inline-block font-bold">DNI:</p>
-                ${users[i].dni}
-              </div>
-              <button class="copies">
-                Copiar Datos
-              </button>
             </div>`;
   }
 
   poolUsers.innerHTML = html;
+
+  const btnsCopy = document.querySelectorAll('.copy');
+
+  btnsCopy.forEach((btnCopy) => btnCopy.addEventListener('click', copyData));
 }

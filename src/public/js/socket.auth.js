@@ -5,6 +5,8 @@ const btnUser = document.getElementById('user');
 
 const wrapperNtf = document.getElementById('wrapperNtf');
 
+const nothingMSg = document.getElementById('nothing-msg');
+
 socket.on('connect', () => {
   console.log('We was connected');
 
@@ -12,6 +14,10 @@ socket.on('connect', () => {
 });
 
 socket.on('renderMessage', (newNotification) => {
+  if (nothingMSg) {
+    nothingMSg.classList.add('hidden');
+  }
+
   let li = document.createElement('li');
   li.className = 'mb-4 flex justify-between rounded shadow-lg p-6 text-red-600';
 
