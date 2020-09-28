@@ -59,3 +59,11 @@ CREATE TABLE agreements(
   event_id NUMBER(4)
 ) TABLESPACE ts_dronesolution;
 
+CREATE TABLE organizations(
+  name_org VARCHAR2(100) NOT NULL,
+  phone_org VARCHAR2(10) NOT NULL,
+  email_org VARCHAR2(50) NOT NULL,
+  address_org VARCHAR2(100) NOT NULL,
+  user_dni VARCHAR2(10) NOT NULL
+) TABLESPACE ts_dronesolution;
+

@@ -17,3 +17,6 @@ ALTER TABLE agreements
 
 ALTER TABLE agreements
   ADD CONSTRAINT fk_agreements3 FOREIGN KEY(event_id) REFERENCES events(id);
+
+ALTER TABLE organizations
+  ADD CONSTRAINT fk_organizations FOREIGN KEY(user_dni) REFERENCES user(dni);

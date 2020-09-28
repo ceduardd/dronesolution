@@ -13,7 +13,7 @@
     {{!-- Avatar --}}
     <div class="flex items-center">
       <button id="user" class="ml-3 focus:outline-none">
-        <p class="hidden md:inline-block">{{user.FULLNAME}}</p>
+        <p class="hidden md:inline-block">{{ user.FULLNAME }}</p>
         <svg
           class="w-8 h-8 inline-block ml-1"
           fill="none"
@@ -36,7 +36,7 @@
       class="hidden absolute top-xfull left-0 right-0 md:left-auto bg-bold rounded-lg text-white shadow-xl"
     >
       <li class="flex justify-center items-center mx-16 pt-4">
-        <a class="block text-center" href="#">
+        <a class="block text-center" href="/user/edit">
           <svg
             class="w-6 h-6 mr-2 inline-block"
             fill="none"
@@ -54,6 +54,14 @@
           Editar
         </a>
       </li>
+      {{#if profile}}
+      <li class="flex justify-center items-center mx-16 pt-4">
+        <a class="block text-center" href="/user/orgedit/{{ user.DNI }}">
+          <svg class="w-6 h-6 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Organización
+        </a>
+      </li>
+      {{/if}}
       <li class="flex justify-center items-center mx-16 py-4">
         <a class="block ml-2 text-center" href="/user/history">
           <svg

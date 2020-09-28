@@ -1,0 +1,72 @@
+{{> head }}
+
+<div class="wrapper grid gap-6 md:grid-cols-2 my-8">
+  <div>
+    <h1 class="text-2xl font-bold mb-4">Perfil</h1>
+    <div class="card bg-bg_color shadow-md p-4 rounded-lg">
+      <img
+        class="m-auto"
+        src="/assets/img/usuario.svg"
+        width="150px"
+        alt="usuario"
+      />
+      <h2 class="text-xl mt-4 font-bold text-bold text-center">
+        {{ user.FULLNAME }}
+      </h2>
+      <p class="text-center mt-2 italic">{{ user.DNI }}</p>
+      <p class="text-center mt-2 italic">{{ user.EMAIL }}</p>
+    </div>
+  </div>
+  <div>
+    <h1 class="text-2xl font-bold mb-4">Datos Personales</h1>
+    <form action="/user/edit/{{ user.DNI }}" method="POST" autocomplete="off">
+      <label>
+        Nombre completo
+        <input
+          class="input mb-2"
+          type="text"
+          name="fullname"
+          value="{{ user.FULLNAME }}"
+          required
+        />
+      </label>
+      <label>
+        Correo electrónico
+        <input
+          class="input mb-2"
+          type="email"
+          name="email"
+          value="{{ user.EMAIL }}"
+          required
+        />
+      </label>
+      <label>
+        Teléfono
+        <input
+          class="input mb-2"
+          type="tel"
+          name="phone"
+          value="{{ user.PHONE }}"
+          required
+        />
+      </label>
+      <label>
+        Dirección
+        <input
+          class="input"
+          type="text"
+          name="home_address"
+          value="{{ user.HOME_ADDRESS }}"
+          required
+        />
+      </label>
+      <button class="btn-round bg-acent w-full text-white font-bold mt-8 focus:outline-none">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
+
+{{!-- SOCKET.IO --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.auth.js"></script>

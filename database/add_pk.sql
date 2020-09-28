@@ -15,3 +15,6 @@ ALTER TABLE plans
 
 ALTER TABLE agreements
   ADD CONSTRAINT pk_agreements PRIMARY KEY(id);
+
+ALTER TABLE organizations
+  ADD CONSTRAINT pk_organizations PRIMARY KEY(user_dni);

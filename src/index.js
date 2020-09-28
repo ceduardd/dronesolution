@@ -21,7 +21,6 @@ module.exports = {
 
 require('./sockets/socket');
 require('./config');
-require('./database');
 require('./lib/local-auth');
 
 // settings

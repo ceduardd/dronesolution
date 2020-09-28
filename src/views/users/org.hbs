@@ -1,0 +1,83 @@
+{{> head }}
+
+<div class="wrapper grid gap-6 md:grid-cols-2 my-8">
+  <div>
+    <h1 class="text-2xl font-bold mb-4">Organización</h1>
+    <div class="card bg-bg_color shadow-md p-4 rounded-lg">
+      <img
+        class="m-auto"
+        src="/assets/img/empresa.svg"
+        width="150px"
+        alt="usuario"
+      />
+      {{#if org}}
+      <h2 class="text-xl mt-4 font-bold text-bold text-center">
+        {{ org.NAME_ORG }}
+      </h2>
+      <p class="text-center mt-2 italic">{{ org.ADDRESS_ORG }}</p>
+      <p class="text-center mt-2 italic">{{ org.PHONE_ORG }}</p>
+      <p class="text-center mt-2 italic">{{ org.EMAIL_ORG }}</p>
+      {{else}}
+      <h2 class="text-xl mt-4 font-bold text-bold text-center">
+        Completa la información
+      </h2>
+      {{/if}}
+    </div>
+  </div>
+  <div>
+    {{#if org}}
+    <h1 class="text-2xl font-bold mb-4">Editar Organización</h1>
+    {{else}}
+    <h1 class="text-2xl font-bold mb-4">Añadir Organización</h1>
+    {{/if}}
+    <form action="/user/org/{{ dni }}/{{ ok }}" method="POST" autocomplete="off">
+      <label>
+        Nombre
+        <input
+          class="input mb-2"
+          type="text"
+          name="name_org"
+          value="{{ org.NAME_ORG }}"
+          required
+        />
+      </label>
+      <label>
+        Correo electrónico
+        <input
+          class="input mb-2"
+          type="email"
+          name="email_org"
+          value="{{ org.EMAIL_ORG }}"
+          required
+        />
+      </label>
+      <label>
+        Teléfono
+        <input
+          class="input mb-2"
+          type="tel"
+          name="phone_org"
+          value="{{ org.PHONE_ORG }}"
+          required
+        />
+      </label>
+      <label>
+        Dirección
+        <input
+          class="input"
+          type="text"
+          name="address_org"
+          value="{{ org.ADDRESS_ORG }}"
+          required
+        />
+      </label>
+      <button class="btn-round bg-acent w-full text-white font-bold mt-8 focus:outline-none">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
+
+{{!-- SOCKET.IO --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.auth.js"></script>
