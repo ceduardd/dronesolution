@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 const { executeQuery } = require('../database');
+const { isNotLoggedIn } = require('../lib/auth');
 
 router.use(require('./authentication'));
 router.use('/user', require('./user'));
@@ -10,11 +11,11 @@ router.use(require('./admin'));
 router.use(require('./pricing'));
 router.use(require('./agreement'));
 
-router.get('/', (req, res) => {
+router.get('/', isNotLoggedIn, (req, res) => {
   res.render('index');
 });
 
-router.get('/pilots', async (req, res) => {
+router.get('/pilots', isNotLoggedIn, async (req, res) => {
   const stmt = `SELECT 
                   fullname,
                   experience,
@@ -32,7 +33,7 @@ router.get('/pilots', async (req, res) => {
   res.render('pilots', payload);
 });
 
-router.get('/drones', async (req, res) => {
+router.get('/drones', isNotLoggedIn, async (req, res) => {
   const stmt = `SELECT
                   brand,
                   description,

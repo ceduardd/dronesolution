@@ -11,7 +11,7 @@ module.exports = {
     if (!req.isAuthenticated()) {
       next();
     } else {
-      return res.redirect('/profile');
+      return res.redirect('/user/profile');
     }
   },
 };

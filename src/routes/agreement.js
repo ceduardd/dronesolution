@@ -62,6 +62,8 @@ router.get('/details/:id', async (req, res) => {
     head: 'Detalles',
   };
 
+  // console.log(payload);
+
   res.render('users/agreement', payload);
 });
 

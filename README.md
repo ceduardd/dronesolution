@@ -31,7 +31,7 @@ npm update
 Compile styles:
 
 ```
-npm build:css
+npm run build:css
 ```
 
 Run:
