@@ -10,7 +10,7 @@ A web application building with Node.js as backend and OracleXE18c as database e
 
 Design building with Tailwind CSS
 
-# Entity–relationship Model
+## Entity–relationship Model
 
 ![](./docs/er-model.png)
 

@@ -22,3 +22,16 @@ INSERT INTO drones (brand, description, pilot_dni, path_img) VALUES (
 	'0910903787',
 	'/assets/drones/Mavic-Mini-DJI.jpeg'
 );
+
+-- ===================================  
+-- USERS
+-- ===================================
+
+INSERT INTO events (dni, fullname, email, password, phone, home_address) VALUES (
+	'0989102310',
+	'Kora Xian',
+	'kxian@gmail.com',
+	'******',
+	'3-90199',
+	'Av. XYZ'
+);
