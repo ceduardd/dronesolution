@@ -66,8 +66,6 @@ router.post('/edit/:dni', isLoggedIn, async (req, res) => {
 
   await executeQuery(stmt, binds);
 
-  // console.log('updated!');
-
   req.flash('success', 'Detalles actualizados');
   res.redirect('/user/profile');
 });
@@ -97,8 +95,6 @@ router.get('/orgedit/:dni', isLoggedIn, async (req, res) => {
 router.post('/org/:dni/:ok', isLoggedIn, async (req, res) => {
   const { name_org, email_org, phone_org, address_org } = req.body;
   const { dni, ok } = req.params;
-
-  console.log(!ok);
 
   if (!ok) {
     await executeQuery(

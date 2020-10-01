@@ -2,14 +2,16 @@
   <nav class="wrapper flex justify-between items-center">
     <div class="flex items-center">
       {{!-- Logo --}}
-      <div class="logo flex items-center">
-        <img src="assets/img/ds-logo-white.svg" width="60px" alt="logo-ds" />
-        <a href="/" class="text-2xl font-bold">DroneSolution</a>
+      <div>
+        <a href="/" class="logo flex items-center">
+          <img src="assets/img/ds-logo-white.svg" width="60px" alt="logo-ds" />
+          <p class="text-2xl font-bold ml-2">DroneSolution</p>
+        </a>
       </div>
 
       {{!-- Links on Desktop --}}
-      <a href="#" class="hidden md:block ml-4">Precios</a>
-      <a href="#" class="hidden md:block ml-4">Acerca de nosotros</a>
+      <a href="/drones" class="hidden md:block ml-4">Drones</a>
+      <a href="/pilots" class="hidden md:block ml-4">Pilotos</a>
     </div>
 
     {{!-- Drop-down burger button --}}

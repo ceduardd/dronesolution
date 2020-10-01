@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 
+const oracledb = require('oracledb');
+
 const { executeQuery } = require('../database');
 const { formatDate } = require('../lib/handlebars');
-const oracledb = require('oracledb');
 
 router.get('/agreement/:id/:plan', async (req, res) => {
   const { id, plan } = req.params;
@@ -37,8 +38,6 @@ router.get('/agreement/:id/:plan', async (req, res) => {
 
   await executeQuery(stmt2, [id]);
 
-  // console.log(plan_id);
-
   res.redirect(`/details/${plan_id}`);
 });
 
@@ -57,18 +56,6 @@ router.get('/details/:id', async (req, res) => {
   const resultQuery = await executeQuery(stmt, binds);
 
   const details = resultQuery.rows[0];
-
-  console.log(details);
-
-  // const agreement = {
-  //   date: DATE_ISSUE,
-  //   name: FULLNAME,
-  //   dni: USER_DNI,
-  //   plan_name,
-  //   price,
-  //   name_event,
-  //   date_event,
-  // };
 
   const payload = {
     details,

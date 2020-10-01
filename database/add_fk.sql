@@ -3,6 +3,12 @@
 ALTER TABLE alarms
   ADD CONSTRAINT fk_alarms FOREIGN KEY(user_dni) REFERENCES users(dni);
 
+ALTER TABLE organizations
+  ADD CONSTRAINT fk_organizations FOREIGN KEY(user_dni) REFERENCES user(dni);
+
+ALTER TABLE events
+  ADD CONSTRAINT fk_events FOREIGN KEY(user_dni) REFERENCES user(dni);
+
 ALTER TABLE places
   ADD CONSTRAINT fk_places FOREIGN KEY(event_id) REFERENCES events(id) ON DELETE CASCADE;
 
@@ -18,5 +24,8 @@ ALTER TABLE agreements
 ALTER TABLE agreements
   ADD CONSTRAINT fk_agreements3 FOREIGN KEY(event_id) REFERENCES events(id);
 
-ALTER TABLE organizations
-  ADD CONSTRAINT fk_organizations FOREIGN KEY(user_dni) REFERENCES user(dni);
+ALTER TABLE drones
+  ADD CONSTRAINT fk_drones FOREIGN KEY(pilot_dni) REFERENCES pilots(dni);
+
+
+

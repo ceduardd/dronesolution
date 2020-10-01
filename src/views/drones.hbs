@@ -1,0 +1,21 @@
+{{> nav }}
+
+<h1 class="text-3xl text-center font-bold my-8 text-bold">Nuestros Drones</h1>
+
+<div class="wrapper grid gap-4 md:grid-cols-3 mb-8">
+  {{#each drones}}
+  <div class="card border rounded-md overflow-hidden">
+    <div class="img h-64">
+      <img
+        class="h-full w-full"
+        src="{{ PATH_IMG }}"
+        alt=""
+      />
+    </div>
+    <div class="p-4">
+      <div class="h2 text-xl font-bold">{{ BRAND }}</div>
+      <p>{{ DESCRIPTION }}</p>
+    </div>
+  </div>
+  {{/each}}
+</div>
