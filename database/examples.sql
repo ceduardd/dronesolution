@@ -1,10 +1,34 @@
 -- Query exmples
 
 -- ===================================  
--- PILOTS
+-- CONSULT AGREEMENTS
 -- ===================================
 
-INSERT INTO pilots (dni, fullname, email, experience, path_img ) VALUES(
+SELECT DATE_ISSUE, USERS.FULLNAME, USERS.DNI, EVENTS.NAME, DATE_START, PLANS.NAME_PLAN, PLANS.PRICE 
+	FROM AGREEMENTS
+		INNER JOIN USERS ON USERS.DNI = AGREEMENTS.USER_DNI 
+		INNER JOIN EVENTS ON EVENTS.ID = AGREEMENTS.EVENT_ID
+		INNER JOIN PLANS ON PLANS.ID = AGREEMENTS.PLAN_ID 
+	WHERE USERS.DNI = '0938975611';
+
+-- ===================================  
+-- INSERT USERS
+-- ===================================
+
+INSERT INTO users (dni, fullname, email, password, phone, home_address) VALUES (
+	'0912349078',
+	'Francisco Rodriguez',
+	'frodriguez@gmail.com',
+	'******',
+	'3-901398',
+	'Av. Infinity Loop'
+);
+
+-- ===================================  
+-- INSERT PILOTS
+-- ===================================
+
+INSERT INTO pilots (dni, fullname, email, experience, path_img) VALUES (
 	'0910903787',
 	'Kora Xian',
 	'kxian@gmail.com',
@@ -13,7 +37,7 @@ INSERT INTO pilots (dni, fullname, email, experience, path_img ) VALUES(
 );
 
 -- ===================================  
--- DRONES
+-- INSERT DRONES
 -- ===================================
 
 INSERT INTO drones (brand, description, pilot_dni, path_img) VALUES (
@@ -24,7 +48,7 @@ INSERT INTO drones (brand, description, pilot_dni, path_img) VALUES (
 );
 
 -- ===================================  
--- USERS
+-- INSERT EVENTS
 -- ===================================
 
 INSERT INTO events (dni, fullname, email, password, phone, home_address) VALUES (
