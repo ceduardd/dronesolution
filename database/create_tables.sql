@@ -17,7 +17,7 @@ CREATE TABLE events(
   date_start TIMESTAMP NOT NULL,
   duration VARCHAR2(5) NOT NULL,
   num_attendees NUMBER(7,0) NOT NULL,
-  capacity_allowed NUMBER(7,0) NOT NULL,
+  capacity_allowed NUMBER(4,4) NOT NULL,
   type VARCHAR2(30),
   state VARCHAR2(20) DEFAULT 'ACTIVE'
 );

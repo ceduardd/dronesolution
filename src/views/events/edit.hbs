@@ -53,6 +53,57 @@
         />
       </label>
       <label>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            Hora
+            <input class="input mt-2 mb-4" name="hour" type="time" value="{{ formatHour event.DATE_START }}" required />
+          </div>
+          <div>
+            Duración
+            <input 
+              class="input mt-2 mb-4" 
+              name="duration" 
+              type="time" 
+              placeholder="Duración"
+              value="{{ event.DURATION }}"
+              required />
+          </div>
+          </div>
+      </label>
+      <label>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            Cantidad de asistentes
+            <input
+              class="input mt-2 mb-4"
+              name="num_attendees"
+              type="number"
+              min="1"
+              max="1000000"
+              placeholder="Asistentes"
+              value="{{ event.NUM_ATTENDEES }}"
+              required
+            />
+          </div>
+          <div>
+            Aforo permitido
+            <div class="percentage">
+              <input
+                class="input mt-2 mb-4"
+                name="capacity_allowed"
+                type="number"
+                min="1"
+                max="100"
+                placeholder="Aforo"
+                value="{{ formatPercent event.CAPACITY_ALLOWED }}"
+                required
+              />
+              <p class="percentage-p">%</p>
+            </div>
+          </div>
+        </div>
+      </label>
+      {{!-- <label>
         Hora
         <input
           class="input mt-2 mb-4 text-primary"
@@ -88,7 +139,7 @@
           placeholder="%"
           value="{{ formatPercent event.CAPACITY_ALLOWED }}"
         />
-      </label>
+      </label> --}}
 
       {{!-- Category can't edit --}}
     </div>

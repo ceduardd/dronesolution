@@ -30,6 +30,7 @@
           class="input mt-2 mb-4"
           name="description"
           type="text"
+          placeholder="De qué se trata el evento..."
           required
         ></textarea>
       </label>
@@ -38,32 +39,56 @@
         <input class="input mt-2 mb-4" name="date" type="date" required />
       </label>
       <label>
-        Hora
-        <input class="input mt-2 mb-4" name="hour" type="time" required />
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            Hora
+            <input class="input mt-2 mb-4" name="hour" type="time" required />
+          </div>
+          <div>
+            Duración
+            <input 
+              class="input mt-2 mb-4" 
+              name="duration" 
+              type="time" 
+              placeholder="Duración"
+              required />
+          </div>
+          </div>
       </label>
       <label>
-        Duración estimada
-        <input class="input mt-2 mb-4" name="duration" type="time" required />
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            Cantidad de asistentes
+            <input
+              class="input mt-2 mb-4"
+              name="num_attendees"
+              type="number"
+              min="1"
+              max="1000000"
+              placeholder="Asistentes"
+              required
+            />
+          </div>
+          <div>
+            Aforo permitido
+            <div class="percentage">
+              <input
+                class="input mt-2 mb-4"
+                name="capacity_allowed"
+                type="number"
+                min="1"
+                max="100"
+                placeholder="Aforo"
+                required
+              />
+              <p class="percentage-p">%</p>
+            </div>
+          </div>
+        </div>
       </label>
-      <label>
-        Cantidad de asistentes
-        <input
-          class="input mt-2 mb-4"
-          name="num_attendees"
-          type="number"
-          required
-        />
-      </label>
-      <label>
+      {{!-- <label>
         Capacidad de aforo permitida
-        <input
-          class="input mt-2 mb-4"
-          name="capacity_allowed"
-          type="number"
-          placeholder="%"
-          required
-        />
-      </label>
+      </label> --}}
       <label>
         Categoría del evento
         <select class="input mt-2" name="type" required>

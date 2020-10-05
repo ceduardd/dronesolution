@@ -38,7 +38,8 @@ router.get('/drones', isNotLoggedIn, async (req, res) => {
                   brand,
                   description,
                   path_img
-                FROM drones`;
+                FROM drones
+                ORDER BY brand`;
 
   const resultQuery = await executeQuery(stmt);
 

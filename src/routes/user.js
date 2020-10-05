@@ -78,7 +78,7 @@ router.get('/orgedit/:dni', isLoggedIn, async (req, res) => {
   const payload = {
     head: 'Organización',
     dni,
-    ok: 0,
+    ok: '0',
   };
 
   const resultQuery = await executeQuery(stmt, [dni]);
@@ -86,8 +86,10 @@ router.get('/orgedit/:dni', isLoggedIn, async (req, res) => {
   if (resultQuery.rows.length > 0) {
     const org = resultQuery.rows[0];
     payload.org = org;
-    payload.ok = 1;
+    payload.ok = '1';
   }
+
+  console.log(payload);
 
   res.render('users/org', payload);
 });
@@ -96,7 +98,7 @@ router.post('/org/:dni/:ok', isLoggedIn, async (req, res) => {
   const { name_org, email_org, phone_org, address_org } = req.body;
   const { dni, ok } = req.params;
 
-  if (!ok) {
+  if (ok === '0') {
     await executeQuery(
       `INSERT INTO organizations (name_org, email_org, phone_org, address_org, user_dni) VALUES(:name_org, :email_org, :phone_org, :address_org, :user_dni)`,
       [name_org, email_org, phone_org, address_org, dni]

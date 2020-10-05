@@ -20,7 +20,7 @@ INSERT INTO drones (brand, description, pilot_dni, path_img) VALUES (
 	'Mavic Mini',
 	'El compacto pero potente Mavic Mini es el compañero creativo perfecto que eleva sin esfuerzo lo ordinario.',
 	'0910903787',
-	'/assets/drones/Mavic-Mini-DJI.jpeg'
+	'/assets/drones/Mavic-Mini-DJI.jpg'
 );
 
 -- ===================================  

@@ -9,6 +9,23 @@
   border-color: transparent transparent #393b44 transparent;
 }
 
+.percentage,
+.attendees {
+  position: relative;
+}
+
+.percentage-p {
+  position: absolute;
+  top: 18px;
+  right: 35px;
+}
+
+.attendees-i {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
 @media (min-width: 768px) {
   #settings-list::before {
     left: 80%;
