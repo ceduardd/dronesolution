@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/",
+    "dev": "npx nodemon src/",
     "build:css": "tailwindcss build src/app/main.css -o src/public/css/bundle.css"
   },
   "keywords": [],
@@ -23,5 +23,8 @@
     "socket.io": "^2.3.0",
     "tailwindcss": "^1.8.5",
     "timeago.js": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
