@@ -22,5 +22,5 @@ CREATE USER dronesolution IDENTIFIED BY dronesolution
 -- ===================================
 
 GRANT CREATE SESSION,
-  RESOURCE,
+  RESOURCE
   TO dronesolution;

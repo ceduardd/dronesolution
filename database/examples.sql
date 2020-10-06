@@ -48,14 +48,25 @@ INSERT INTO drones (brand, description, pilot_dni, path_img) VALUES (
 );
 
 -- ===================================  
--- INSERT EVENTS
+-- INSERT USERS
 -- ===================================
 
-INSERT INTO events (dni, fullname, email, password, phone, home_address) VALUES (
+INSERT INTO users (dni, fullname, email, password, phone, home_address) VALUES (
 	'0989102310',
 	'Kora Xian',
 	'kxian@gmail.com',
 	'******',
 	'3-90199',
 	'Av. XYZ'
+);
+
+-- ===================================  
+-- INSERT ADMIN
+-- ===================================
+
+INSERT INTO administrators (name, email, password, dni) VALUES (
+	'Eduardo',
+	'edu@admin.com',
+	'Passwd',
+	'0943984765'
 );

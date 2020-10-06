@@ -29,3 +29,6 @@ ALTER TABLE pilots
 
 ALTER TABLE drones
   ADD CONSTRAINT pk_drones PRIMARY KEY(id);
+
+ALTER TABLE administrators
+      ADD CONSTRAINT pk_administrators PRIMARY KEY(dni);
