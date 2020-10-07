@@ -67,7 +67,7 @@ router.post('/edit/:dni', isLoggedIn, async (req, res) => {
   await executeQuery(stmt, binds);
 
   req.flash('success', 'Detalles actualizados');
-  res.redirect('/user/profile');
+  res.redirect('/user/edit');
 });
 
 router.get('/orgedit/:dni', isLoggedIn, async (req, res) => {

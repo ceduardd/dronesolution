@@ -7,55 +7,77 @@
 
 {{> nav-admin }}
 
-<div class="wrapper grid gap-6 mb-4 md:grid-cols-2 mt-6">
-  <div>
-    <h2 class="mb-4"><i class="fas fa-users mr-2"></i>Pool Users</h2>
+<div class="wrapper grid gap-6 mb-4 mt-6">
 
-    <div class="poolUsers">
-      {{!-- Alarms goes here --}}
+  <div>
+    <h2 class="mb-4"><i class="fas fa-calendar-week mr-2"></i>Eventos más cercanos</h2>
+    <div class="grid md:grid-cols-4 gap-4">
+      {{#each events}}
+      <div class="card bg-warning">
+        <div class="card-body">
+          <h2>
+            {{ NAME }}
+          </h2>
+          <p class="italic">{{ FULLNAME }}</p>
+          <p class="italic">{{ DESCRIPTION }}</p>
+          <p class="italic font-bold">{{ formatAgo DATE_START }}</p>
+        </div>
+      </div>
+      {{/each}}
     </div>
   </div>
 
-  <form id="form-message" class="form" autocomplete="off">
-    <h2 class="mb-4"><i class="fas fa-paper-plane mr-2"></i>Send Message</h2>
-    <input
-      class="form-control"
-      type="text"
-      id="type"
-      name="type"
-      placeholder="Head"
-      required
-    />
-    <textarea
-      class="form-control mt-2"
-      type="text"
-      id="description"
-      name="description"
-      placeholder="Description"
-      required
-    ></textarea>
-    <input
-      class="form-control mt-2"
-      type="text"
-      id="id"
-      name="id"
-      placeholder="ID Connection"
-      disabled
-      required
-    />
-    <input
-      class="form-control mt-2"
-      type="text"
-      id="dni"
-      name="dni"
-      placeholder="DNI"
-      disabled
-      required
-    />
-    <button class="btn btn-success btn-block mt-2" type="submit" id="btnSubmit">
-      Send
-    </button>
-  </form>
+
+  <div class="grid md:grid-cols-2 gap-y-6">
+    <div>
+      <h2 class="mb-4"><i class="fas fa-users mr-2"></i>Usuarios conectados</h2>
+  
+      <div class="poolUsers">
+        {{!-- Alarms goes here --}}
+      </div>
+    </div>
+  
+    <form id="form-message" class="form" autocomplete="off">
+      <h2 class="mb-4"><i class="fas fa-paper-plane mr-2"></i>Enviar mensaje</h2>
+      <input
+        class="form-control"
+        type="text"
+        id="type"
+        name="type"
+        placeholder="Head"
+        required
+      />
+      <textarea
+        class="form-control mt-2"
+        type="text"
+        id="description"
+        name="description"
+        placeholder="Description"
+        required
+      ></textarea>
+      <input
+        class="form-control mt-2"
+        type="text"
+        id="id"
+        name="id"
+        placeholder="ID Connection"
+        disabled
+        required
+      />
+      <input
+        class="form-control mt-2"
+        type="text"
+        id="dni"
+        name="dni"
+        placeholder="DNI"
+        disabled
+        required
+      />
+      <button class="btn btn-success btn-block mt-2" type="submit" id="btnSubmit">
+        Send
+      </button>
+    </form>
+  </div>
 </div>
 
 {{!-- BOOTSTRAP 4 --}}

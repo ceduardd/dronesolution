@@ -6,7 +6,7 @@ A project of DB Course at UG 👨‍🎓
 
 ## Description
 
-A web application building with Node.js as backend and OracleXE18c as database engine. This repositorie contain the source code of the client side.
+A web application building with Node.js as backend and OracleXE18c as database engine. This repositorie contain the source code.
 
 Design building with Tailwind CSS
 
@@ -15,6 +15,12 @@ Design building with Tailwind CSS
 ![](./docs/er-model.png)
 
 ## Usage
+
+Create database with SQL scripts contains in `database` folder.
+
+Install [Node.js](nodejs.org).
+
+Download [Last Release](https://github.com/ceduardd/dronesolution/releases).
 
 Install dependencies:
 

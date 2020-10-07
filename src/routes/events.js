@@ -95,18 +95,16 @@ router.post('/add', isLoggedIn, async (req, res) => {
 router.get('/edit/:id', isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
-  const stmt = `SELECT * FROM events WHERE id = :id`;
-  const stmt2 = `SELECT * FROM places WHERE event_id = :id`;
+  const stmt = `SELECT events.user_dni, events.name, events.description, events.date_start, events.duration, events.num_attendees, events.capacity_allowed,
+                  places.name AS name_place, places.address, places.capacity_max
+                FROM events 
+                  INNER JOIN places ON events.id = places.event_id
+                WHERE events.id = :id`;
 
-  const binds = [id];
-
-  const resultQuery = await executeQuery(stmt, binds);
+  const resultQuery = await executeQuery(stmt, [id]);
   const event = resultQuery.rows[0]; // Rows selected
 
-  const resultQuery2 = await executeQuery(stmt2, binds);
-  const place = resultQuery2.rows[0]; // Rows selected
-
-  res.render('events/edit', { event, place });
+  res.render('events/edit', { event });
 });
 
 router.post('/edit/:id', isLoggedIn, async (req, res) => {

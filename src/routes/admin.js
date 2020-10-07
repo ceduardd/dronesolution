@@ -28,8 +28,65 @@ router.post('/admin/signin', async (req, res) => {
   }
 });
 
-router.get('/admin/dashboard', (req, res) => {
-  res.render('admin/dashboard');
+router.get('/admin/dashboard', async (req, res) => {
+  const resultQuery = await executeQuery(
+    `SELECT users.fullname, events.name, events.description, events.date_start
+    FROM users
+    INNER JOIN events ON users.dni = events.user_dni
+    WHERE rownum <= 4
+    ORDER BY events.date_start`
+  );
+
+  const payload = {
+    events: resultQuery.rows,
+  };
+
+  // console.log(payload);
+
+  res.render('admin/dashboard', payload);
+});
+
+router.get('/admin/statics', async (req, res) => {
+  const { rows: basic } = await executeQuery(
+    `SELECT fullname, dni, phone 
+    FROM users 
+    WHERE dni IN (SELECT user_dni FROM agreements 
+    WHERE plan_id = (SELECT id FROM plans 
+    WHERE name_plan = 'Básico'))`
+  );
+
+  const { rows: standar } = await executeQuery(
+    `SELECT fullname, dni, phone 
+    FROM users 
+    WHERE dni IN (SELECT user_dni FROM agreements 
+    WHERE plan_id = (SELECT id FROM plans 
+    WHERE name_plan = 'Estándar'))`
+  );
+
+  const { rows: premium } = await executeQuery(
+    `SELECT fullname, dni, phone 
+    FROM users 
+    WHERE dni IN (SELECT user_dni FROM agreements 
+    WHERE plan_id = (SELECT id FROM plans 
+    WHERE name_plan = 'Premium'))`
+  );
+
+  const { rows: unsubscribed } = await executeQuery(
+    `SELECT users.fullname, events.name, unsubscribed_events.reason 
+    FROM users
+    INNER JOIN events ON users.dni = events.user_dni
+    INNER JOIN unsubscribed_events ON unsubscribed_events.event_id = events.id
+    WHERE events.state = 'UNSUBSCRIBED'`
+  );
+
+  const payload = {
+    basic,
+    standar,
+    premium,
+    unsubscribed,
+  };
+
+  res.render('admin/statics', payload);
 });
 
 module.exports = router;
