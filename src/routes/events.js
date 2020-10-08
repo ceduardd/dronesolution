@@ -95,7 +95,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 router.get('/edit/:id', isLoggedIn, async (req, res) => {
   const { id } = req.params;
 
-  const stmt = `SELECT events.user_dni, events.name, events.description, events.date_start, events.duration, events.num_attendees, events.capacity_allowed,
+  const stmt = `SELECT events.id, events.user_dni, events.name, events.description, events.date_start, events.duration, events.num_attendees, events.capacity_allowed,
                   places.name AS name_place, places.address, places.capacity_max
                 FROM events 
                   INNER JOIN places ON events.id = places.event_id
@@ -168,23 +168,29 @@ router.post('/delete', isLoggedIn, async (req, res) => {
   const { id, user_dni, password, reason } = req.body;
 
   if (user_dni === req.user.DNI) {
-    const stmt = `SELECT * FROM users WHERE dni = :user_dni`;
+    const {
+      rows,
+    } = await executeQuery(`SELECT * FROM users WHERE dni = :user_dni`, [
+      user_dni,
+    ]);
 
-    const resultQuery = await executeQuery(stmt, [user_dni]);
-
-    if (resultQuery.rows.length > 0) {
-      // match password
-      const user = resultQuery.rows[0];
+    if (rows.length > 0) {
+      // Match password
+      const user = rows[0];
 
       const validPassword = await matchPassword(password, user.PASSWORD);
 
       if (validPassword) {
-        // unsubscribed event
-        const stmt2 = `UPDATE events SET state = 'UNSUBSCRIBED' WHERE id = :id`;
-        const stmt3 = `INSERT INTO unsubscribed_events (event_id, reason) VALUES (:id, :reason)`;
+        // Unsubscribed event
 
-        await executeQuery(stmt2, [id]); // Deleting event
-        await executeQuery(stmt3, [id, reason]); // Register unsubscribed
+        await executeQuery(
+          `UPDATE events SET state = 'UNSUBSCRIBED' WHERE id = :id`,
+          [id]
+        ); // Deleting event
+        await executeQuery(
+          `INSERT INTO unsubscribed_events (event_id, reason) VALUES (:id, :reason)`,
+          [id, reason]
+        ); // Register unsubscribed
 
         req.flash('success', 'Evento dado de baja satisfactoriamente');
         return res.redirect('/user/profile');
