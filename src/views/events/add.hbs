@@ -21,7 +21,12 @@
 
       <label>
         Nombre del evento
-        <input class="input mt-2 mb-4" name="name" type="text" required />
+        <input 
+          class="input mt-2 mb-4" 
+          name="name" type="text" 
+          maxlength="80" 
+          required 
+        />
       </label>
       <label>
         Descripción
@@ -31,6 +36,7 @@
           name="description"
           type="text"
           placeholder="De qué se trata el evento..."
+          maxlength="250"
           required
         ></textarea>
       </label>
@@ -86,17 +92,18 @@
           </div>
         </div>
       </label>
-      {{!-- <label>
-        Capacidad de aforo permitida
-      </label> --}}
       <label>
         Categoría del evento
         <select class="input mt-2" name="type" required>
           <option value="" disabled selected>Selecciona una categoría</option>
           <option value="DEPORTIVO">DEPORTIVO</option>
+          <option value="INFANTIL">INFANTIL</option>
           <option value="SOCIAL">SOCIAL</option>
-          <option value="POLÍTICO">RELIGIOSO</option>
+          <option value="RELIGIOSO">RELIGIOSO</option>
           <option value="POLÍTICO">POLÍTICO</option>
+          <option value="CONFERENCIA">CONFERENCIA</option>
+          <option value="TECNOLOGÍA">TECNOLOGÍA</option>
+          <option value="EDUCATIVO">EDUCATIVO</option>
           <option value="OTRO">OTRO</option>
         </select>
       </label>
@@ -112,11 +119,23 @@
 
       <label>
         Nombre
-        <input class="input mt-2 mb-4" name="name_place" type="text" required />
+        <input 
+          class="input mt-2 mb-4"
+          name="name_place" 
+          type="text" 
+          maxlength="50"
+          required 
+        />
       </label>
       <label>
         Dirección
-        <input class="input mt-2 mb-4" name="address" type="text" required />
+        <input 
+          class="input mt-2 mb-4" 
+          name="address" 
+          type="text"
+          maxlength="100"
+          required 
+        />
       </label>
       <label>
         Tipo
@@ -127,6 +146,8 @@
           <option value="PARQUE">PARQUE</option>
           <option value="CENTRO COMERCIAL">CENTRO COMERCIAL</option>
           <option value="IGLESIA">IGLESIA</option>
+          <option value="ESCUELA">ESCUELA</option>
+          <option value="UNIVERSIDAD">UNIVERSIDAD</option>
           <option value="OTRO">OTRO</option>
         </select>
       </label>

@@ -79,11 +79,18 @@ router.get('/admin/statics', async (req, res) => {
     WHERE events.state = 'UNSUBSCRIBED'`
   );
 
+  const { rows: registers } = await executeQuery(
+    `SELECT COUNT(dni) AS registers FROM users`
+  );
+
+  const registersCount = registers[0].REGISTERS;
+
   const payload = {
     basic,
     standar,
     premium,
     unsubscribed,
+    registersCount,
   };
 
   res.render('admin/statics', payload);

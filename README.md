@@ -1,4 +1,4 @@
-# DroneSolution - Client
+# DroneSolution
 
 A project of DB Course at UG 👨‍🎓
 
@@ -9,6 +9,8 @@ A project of DB Course at UG 👨‍🎓
 A web application building with Node.js as backend and OracleXE18c as database engine. This repositorie contain the source code.
 
 Design building with Tailwind CSS
+
+Yo can see [UI Screenshots](./docs/UI.md)
 
 ## Entity–relationship Model
 

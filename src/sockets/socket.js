@@ -1,12 +1,11 @@
 const { io, app } = require('../index'); // get socket and server
-
-const Dashboard = require('../classes/dashboard');
 const { executeQuery } = require('../database');
 const { formatAgo } = require('../lib/handlebars');
+const Dashboard = require('../classes/dashboard');
 
 const dashboard = new Dashboard();
 
-let idAdmin; // Save ID Admin
+let adminID; // Save ID Admin
 
 io.on('connection', (socket) => {
   console.log('New user has been connected');
@@ -17,47 +16,46 @@ io.on('connection', (socket) => {
 
     const { dni, type, description } = notification;
 
-    const stmt = `INSERT INTO alarms (
-                    user_dni,
-                    type,
-                    description,
-                    issued_at
-                  ) VALUES (
-                     :dni,
-                     :type,
-                     :description,
-                     LOCALTIMESTAMP(2)
-                  )`;
-
-    const binds = [dni, type, description];
-
     // Save notification log
-    await executeQuery(stmt, binds);
+    await executeQuery(
+      `INSERT INTO alarms (
+        user_dni,
+        type,
+        description,
+        issued_at
+      ) VALUES (
+        :dni,
+        :type,
+        :description,
+        LOCALTIMESTAMP(2)
+      )`,
+      [dni, type, description]
+    );
 
     socket.broadcast.to(notification.id).emit('renderMessage', notification);
   });
 
   socket.on('registerIDAdmin', () => {
-    idAdmin = socket.id;
+    adminID = socket.id;
     socket.emit('addUsers', dashboard.getUsers());
   });
 
   socket.on('registerID', () => {
-    let id = socket.id;
+    const id = socket.id;
 
-    let user = app.locals.user;
+    const user = app.locals.user;
 
     if (user) {
       dashboard.addUser(id, user.DNI, user.FULLNAME, user.EMAIL);
 
-      if (idAdmin) {
-        socket.broadcast.to(idAdmin).emit('addUsers', dashboard.getUsers());
+      if (adminID) {
+        socket.broadcast.to(adminID).emit('addUsers', dashboard.getUsers());
       }
     }
   });
 
   socket.on('disconnect', () => {
     dashboard.removeUser(socket.id);
-    socket.broadcast.to(idAdmin).emit('addUsers', dashboard.getUsers());
+    socket.broadcast.to(adminID).emit('addUsers', dashboard.getUsers());
   });
 });

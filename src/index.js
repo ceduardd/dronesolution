@@ -8,7 +8,7 @@ const SocketIO = require('socket.io');
 const http = require('http');
 const path = require('path');
 
-// initializations
+// Initializations
 const app = express();
 const server = http.createServer(app);
 
@@ -17,13 +17,13 @@ const io = SocketIO(server);
 module.exports = {
   io,
   app,
-}; // this is necessary
+};
 
 require('./sockets/socket');
 require('./config');
 require('./lib/local-auth');
 
-// settings
+// Settings
 app.set('views', path.join(__dirname, 'views'));
 app.engine(
   '.hbs',
@@ -37,7 +37,7 @@ app.engine(
 );
 app.set('view engine', '.hbs');
 
-// middlewares
+// Middlewares
 app.use(
   session({
     secret: 'dronesolution-session',
@@ -52,7 +52,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// global
+// Global
 app.use((req, res, next) => {
   app.locals.success = req.flash('success');
   app.locals.failure = req.flash('failure');
@@ -60,13 +60,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
+// Routes
 app.use(require('./routes'));
 
-// static
+// Static
 app.use(express.static(path.join(__dirname, 'public')));
 
-// starting server
+// Starting server
 server.listen(process.env.PORT, () => {
   console.log(`Server on port ${process.env.PORT}`);
 });

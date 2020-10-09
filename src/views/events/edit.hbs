@@ -29,6 +29,7 @@
           class="input mt-2 mb-4 text-primary"
           name="name"
           type="text"
+          maxlength="80"
           value="{{ event.NAME }}"
         />
       </label>
@@ -39,6 +40,7 @@
           class="input mt-2 mb-4 text-primary"
           name="description"
           type="text"
+          maxlength="250"
         >
 {{ event.DESCRIPTION }}</textarea
         >
@@ -119,6 +121,7 @@
           class="input mt-2 mb-4 text-primary"
           name="name_place"
           type="text"
+          maxlength="50"
           value="{{ event.NAME }}"
         />
       </label>
@@ -128,6 +131,7 @@
           class="input mt-2 mb-4 text-primary"
           name="address"
           type="text"
+          maxlength="100"
           value="{{ event.ADDRESS }}"
         />
       </label>
@@ -150,3 +154,6 @@
     Guardar
   </button>
 </form>
+
+{{!-- SCRIPT --}}
+<script src="/js/date-valid.js"></script>

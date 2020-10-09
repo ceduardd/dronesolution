@@ -27,6 +27,7 @@
           type="text"
           name="fullname"
           value="{{ user.FULLNAME }}"
+          maxlength="80"
           required
         />
       </label>
@@ -37,6 +38,7 @@
           type="email"
           name="email"
           value="{{ user.EMAIL }}"
+          maxlength="50"
           required
         />
       </label>
@@ -47,6 +49,7 @@
           type="tel"
           name="phone"
           value="{{ user.PHONE }}"
+          maxlength="10"
           required
         />
       </label>
@@ -57,6 +60,7 @@
           type="text"
           name="home_address"
           value="{{ user.HOME_ADDRESS }}"
+          maxlength="100"
           required
         />
       </label>

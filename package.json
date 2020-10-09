@@ -1,10 +1,11 @@
 {
-  "name": "dronesolution-client",
+  "name": "dronesolution",
   "version": "1.0.0",
-  "description": "",
+  "description": "Advanced CRUD Application usign Oracle DBMS",
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon src/",
+    "start": "node src/",
     "build:css": "tailwindcss build src/app/main.css -o src/public/css/bundle.css"
   },
   "keywords": [],
