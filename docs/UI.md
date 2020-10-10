@@ -2,52 +2,52 @@
 
 SignIn
 
-![](./user-signin.png)
+![](./screenshots/user-signin.png)
 
 SignUp
 
-![](./user-signup.png)
+![](./screenshots/user-signup.png)
 
 User dashboard
 
-![](./user-dashboard.png)
+![](./screenshots/user-dashboard.png)
 
 Edit user
 
-![](./user-edit.png)
+![](./screenshots/user-edit.png)
 
 Edit organization
 
-![](./user-org.png)
+![](./screenshots/user-org.png)
 
 Pricing
 
-![](./pricing.png)
+![](./screenshots/pricing.png)
 
 Add event
 
-![](./event-add.png)
+![](./screenshots/event-add.png)
 
 Edit event
 
-![](./event-edit.png)
+![](./screenshots/event-edit.png)
 
 Delete event
 
-![](./event-delete.png)
+![](./screenshots/event-delete.png)
 
 Agree
 
-![](./agree.png)
+![](./screenshots/agree.png)
 
 Admin signin
 
-![](./admin-signin.png)
+![](./screenshots/admin-signin.png)
 
 Admin dashboard
 
-![](./admin-dashboard.png)
+![](./screenshots/admin-dashboard.png)
 
 Admin statics
 
-![](./admin-statics.png)
+![](./screenshots/admin-statics.png)
