@@ -2,7 +2,7 @@
 
 A project of DB Course at UG 👨‍🎓
 
-![](./docs/screenshot.png)
+![](./docs/screenshots/screenshot.png)
 
 ## Description
 
@@ -14,7 +14,7 @@ Yo can see [UI Screenshots](./docs/UI.md)
 
 ## Entity–relationship Model
 
-![](./docs/er-model.png)
+![](./docs/screenshots/er-model.png)
 
 ## Usage
 
