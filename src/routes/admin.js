@@ -33,7 +33,7 @@ router.get('/admin/dashboard', async (req, res) => {
     `SELECT users.fullname, events.name, events.description, events.date_start
     FROM users
     INNER JOIN events ON users.dni = events.user_dni
-    WHERE rownum <= 4
+    WHERE (events.state = 'ACTIVE' OR events.state = 'SUBSCRIBED') AND rownum <= 4
     ORDER BY events.date_start`
   );
 
